@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 
-Route::get('/' ,[AdminController::class,'home']);
+Route::get('/' ,[AdminController::class,'home'])->name('homee');
 Route::get('/home' ,[AdminController::class,'index'])->name('home');
 
 Route::get('/create_room' ,[AdminController::class,'create_room'])->middleware(['auth','admin']);
@@ -48,6 +48,7 @@ Route::post('/mail/{id}' ,[AdminController::class,'mail'])->middleware(['auth','
 
 Route::get('/our_rooms' ,[HomeController::class,'our_rooms']);
 
-Route::get('/hotel_gallay' ,[HomeController::class,'hotel_gallay']);
+Route::get('/hotel_gallary' ,[HomeController::class,'hotel_gallary']);
 
 Route::get('/contact_us' ,[HomeController::class,'contact_us']);
+ 

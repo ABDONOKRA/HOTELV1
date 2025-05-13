@@ -24,47 +24,25 @@
      {
         padding: 10px;
     }
-
-
-
-
-
-
     </style>
-
-
-
-
   </head>
-  <body>
-   
+  <body> 
             @include('admin.header')
-
-
-        @include('admin.sidebar')
-
-
-   
-      <!-- Sidebar Navigation end-->
-    
+        @include('admin.sidebar') 
+      <!-- Sidebar Navigation end-->   
   <div class="page-content">
         <div class="page-header">
           <div class="container-fluid">
           </div>
-
  <table class="table_deg">
-
             <tr>
             <th class="th_deg" >Name</th> 
             <th class="th_deg" >Email</th> 
             <th class="th_deg" >Phone</th> 
             <th class="th_deg" >Message</th> 
-            <th class="th_deg" >Send Email</th> 
-            
-            </tr> 
-            
+            <th class="th_deg" >Send Email</th>            
+            </tr>             
             @foreach($data as $data)
-
             <tr>    
             <td>  {{$data->name}}  </td> 
             <td>  {{$data->email}}  </td> 
@@ -72,30 +50,11 @@
             <td>  {{$data->message}}  </td>
             <td> 
             <a   class="btn btn-success" href="{{url('send_mail',$data->id)}}"> send mail</a>
-            
-              </td> 
-            
-            
-
-            </tr> 
-             
+            </tr>             
             @endforeach
           </table>
-
-
-
-
-
-
-
-
-
  </div>
- </div>
-       
-
+ </div>     
 @include('admin.footer')
-
-
   </body>
 </html>

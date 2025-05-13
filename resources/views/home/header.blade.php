@@ -17,50 +17,43 @@
                         <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarsExample04">
-                           <ul class="navbar-nav mr-auto">
-                              <li class="nav-item active">
-                                 <a class="nav-link" href="{{url('/')}}">Home</a>
-                              </li>
-                             
-                              <li class="nav-item">
-                                 <a class="nav-link" href="{{url('our_rooms')}}">Our room</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="{{url('hotel_gallary')}}">Gallery</a>
-                              </li>
-                             
-                              <li class="nav-item">
-                                 <a class="nav-link" href="{{url('contact_us')}}">Contact Us</a>
-                              </li>
+                          <ul class="navbar-nav mr-auto">
+                                  <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ url('/') }}">Home</a>
+                                 </li>
+                                 <li class="nav-item {{ request()->is('our_rooms') ? 'active' : '' }}">
+                                     <a class="nav-link" href="{{ url('our_rooms') }}">Our Rooms</a>
+                                 </li>
+                                 <li class="nav-item {{ request()->is('hotel_gallary') ? 'active' : '' }}">
+                                     <a class="nav-link" href="{{ url('hotel_gallary') }}">Gallery</a>
+                                 </li>                               
+                                 <li class="nav-item {{ request()->is('contact_us') ? 'active' : '' }}">
+                                     <a class="nav-link" href="{{ url('contact_us') }}">Contact Us</a>
+                                 </li>
+                                           @if(Auth::check() && Auth::user()->usertype=='admin')
+                                         
+                                             <li class="nav-item">
+                                             <a class="nav-link home-link" href="{{url('/home')}}">Dashboard</a>
+                                             </li>
+                                          @endif
                                  
                                   @if (Route::has('login'))
                 
-                    @auth
-                        <x-app-layout>
-    
-                        </x-app-layout>    
-                         @else
-                         <li class="nav-item" style="padding-right:10px">
-                                 <a class="btn btn-success" href="{{'login'}}">login</a>
-                                 </li>
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                 <a class="btn btn-primary" href="{{'register'}}">Register </a>
-                                 </li>
-                        @endif
-                    @endauth
-                
-                     @endif
+                                  @auth
+                                       <x-app-layout>
 
-
-
-
-
-
-
-
-
-
+                                       </x-app-layout>    
+                                 @else
+                                          <li class="nav-item" style="padding-right:10px">
+                                             <a class="btn btn-outline-success" href="{{'login'}}">login</a>
+                                                </li>
+                                 @if (Route::has('register'))
+                                           <li class="nav-item">
+                                             <a class="btn btn-outline-primary" href="{{'register'}}">Register </a>
+                                                </li>
+                                 @endif
+                                 @endauth                                      
+                                 @endif
                            </ul>
                         </div>
                      </nav>

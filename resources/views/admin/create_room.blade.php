@@ -21,23 +21,12 @@
                     text-align: center;
                     padding-top: 40px;
                 }
-
 </style>            
-
-
   </head>
   <body>
-   
             @include('admin.header')
-
-
         @include('admin.sidebar')
-
-
-   
       <!-- Sidebar Navigation end-->
-    
-
       <div class="page-content">
         <div class="page-header">
           <div class="container-fluid">
@@ -45,12 +34,8 @@
 
             <h1 style="font-size :30px ; font-weight :bold"> Add Rooms</h1>
             <div class:"div_center">
-
-
              <form action="{{url('add_room')}}" method="post" enctype="multipart/form-data"> 
-
         @csrf
-
                 <div class="div_deg " >
                 <label>Romm Title</label>
                 <input type="text" name ="title" > 

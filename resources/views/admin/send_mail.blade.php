@@ -21,34 +21,19 @@
                     text-align: center;
                     padding-top: 40px;
                 }
-
 </style>   
-
-
-
   </head>
   <body>
-   
             @include('admin.header')
-
-
         @include('admin.sidebar')
-
-
-   
-      <!-- Sidebar Navigation end-->
-    
-  <div class="page-content">
+      <!-- Sidebar Navigation end-->   
+      <div class="page-content">
         <div class="page-header">
           <div class="container-fluid">
-
           <center>
-
                 <h1 style="font-size: 30px;font-weight:bold;">Mail send to {{$data->name}} </h1>
-
             <form action="{{uri('mail',$data->id)}} " method="post" > 
-
-        @csrf
+                @csrf
 
                 <div class="div_deg " >
                 <label>Greeting</label>
@@ -57,72 +42,29 @@
 
                  <div class="div_deg "> 
                 <label>Mail Body </label>
-                    <textarea name="body"> 
-                    </textarea>
+                 <textarea name="body"> 
+                 </textarea>
                 </div>
-
                  <div class="div_deg ">
                 <label>Action Text</label>
-                <input type="text" name ="action_text" value=" "> 
-               
+                <input type="text" name ="action_text" value=" ">             
                 </div>
-
                  <div class="div_deg ">
                 <label>Action Url</label>
-                <input type="text" name ="action_url" value=" "> 
-               
+                <input type="text" name ="action_url" value=" ">            
                 </div>
-
                 <div class="div_deg ">
                 <label>End Line</label>
-                <input type="text" name ="end_line" value=" "> 
-               
+                <input type="text" name ="end_line" value=" ">        
                 </div>
-
-
-                   
-
-                        
-
-              
-
-
-
-
-                     
-
-
-
-
-
-
-               
-
                     <div class="div_deg ">
-
                     <input  class="btn btn-success" type="submit" value="Send Mail">
-
                     </div>
-
-
-
-
-
             </form>
-
-
          </center>
-
-
-
           </div>
-    
              </div>
                      </div>
-       
-
-@include('admin.footer')
-
-
+          @include('admin.footer')
   </body>
 </html>
