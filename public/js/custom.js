@@ -13,14 +13,25 @@ $(function () {
 		$('.loader_bg').fadeToggle();
 	}, 1500);
 	
-	/* Tooltip
+	/* Initialize Bootstrap 5 Components
 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 	
-	$(document).ready(function(){
-		$('[data-toggle="tooltip"]').tooltip();
+	// Initialize all tooltips
+	var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+	var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+		return new bootstrap.Tooltip(tooltipTriggerEl);
 	});
-	
-	
+
+	// Initialize carousel with options
+	var myCarousel = document.querySelector('#myCarousel');
+	if (myCarousel) {
+		var carousel = new bootstrap.Carousel(myCarousel, {
+			interval: 5000,
+			touch: true,
+			ride: 'carousel',
+			pause: 'hover'
+		});
+	}
 	
 	/* Mouseover
 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */

@@ -1,1 +1,95 @@
 /* your styles go here */
+
+/* Admin Sidebar Styles */
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #2d3035;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #22252a;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+}
+
+#sidebar ul li a {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+}
+
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: #22252a;
+}
+
+#sidebar ul li.active > a {
+    color: #fff;
+    background: #DB6574;
+}
+
+#sidebar ul li > ul {
+    margin-left: 10px;
+}
+
+#sidebar ul li > ul a {
+    font-size: 0.9em;
+    padding-left: 30px;
+}
+
+#sidebar .collapse.show,
+#sidebar .collapsing {
+    background: #22252a;
+}
+
+#sidebar i {
+    margin-right: 10px;
+}
+
+.heading {
+    font-size: 1.1em;
+    text-transform: uppercase;
+    color: #8a8d93;
+    font-weight: bold;
+    margin: 10px 20px;
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #sidebar {
+        min-width: 80px;
+        max-width: 80px;
+        text-align: center;
+        margin-left: -80px !important;
+    }
+    
+    #sidebar.active {
+        margin-left: 0 !important;
+    }
+
+    #sidebar .sidebar-header h3,
+    #sidebar .heading {
+        display: none;
+    }
+
+    #sidebar ul li a {
+        padding: 20px 10px;
+        text-align: center;
+    }
+
+    #sidebar ul li a i {
+        margin-right: 0;
+        display: block;
+        font-size: 1.8em;
+        margin-bottom: 5px;
+    }
+}
