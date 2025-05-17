@@ -7,8 +7,7 @@ use App\Models\Room;
 use App\Models\Booking;
 use App\Models\Contact;
 use App\Models\Gallary;
-use App\Http\Controllers\Compact;
-use App\Models\Reservation;
+use App\Models\Activity;
 
 
  
@@ -35,8 +34,8 @@ class HomeController extends Controller
         
             $data = new Booking;
 
-        $data->room_id =$id;
-
+        $data->room_id = $id;
+        $data->user_id = auth()->id();
         $data->name = $request->name;
 
         $data->email = $request->email;
@@ -101,6 +100,78 @@ class HomeController extends Controller
             return view('home.index', compact('room', 'gallary'));
         }
         
+        public function hotels_services()
+        {
+            $activities = Activity::all();
+            return view('home.hotels_services', compact('activities'));
+        }
+
+        public function activity_details($id)
+        {
+            $activity = Activity::findOrFail($id);
+            return view('home.activity_details', compact('activity'));
+        }
+
+        public function spa_details($id)
+        {
+            $activity = Activity::findOrFail($id);
+            return view('home.spa_details', compact('activity'));
+        }
+
+        public function book_activity(Request $request, $id)
+        {
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required|email',
+                'phone' => 'required',
+                'booking_date' => 'required|date|after:today',
+                'booking_time' => 'required'
+            ]);
+
+            $activity = Activity::findOrFail($id);
+            
+            $booking = new Booking();
+            $booking->user_id = auth()->id();
+            $booking->activity_id = $id;
+            $booking->name = $request->name;
+            $booking->email = $request->email;
+            $booking->phone = $request->phone;
+            $booking->start_date = $request->booking_date;
+            $booking->booking_time = $request->booking_time;
+            $booking->type = 'activity';
+            $booking->status = 'pending';
+            $booking->save();
+
+            return redirect()->back()->with('message', 'Activity booked successfully!');
+        }
+
+        public function book_spa(Request $request, $id)
+        {
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required|email',
+                'phone' => 'required',
+                'booking_date' => 'required|date|after:today',
+                'booking_time' => 'required'
+            ]);
+
+            $activity = Activity::findOrFail($id);
+            
+            $booking = new Booking();
+            $booking->user_id = auth()->id();
+            $booking->activity_id = $id;
+            $booking->name = $request->name;
+            $booking->email = $request->email;
+            $booking->phone = $request->phone;
+            $booking->start_date = $request->booking_date;
+            $booking->booking_time = $request->booking_time;
+            $booking->type = 'spa';
+            $booking->status = 'pending';
+            $booking->save();
+
+            return redirect()->back()->with('message', 'Spa service booked successfully!');
+        }
+
         public function my_reservations()
         {
             // Check if user is authenticated
@@ -108,24 +179,29 @@ class HomeController extends Controller
                 return redirect('login');
             }
 
-            // Get user's reservations
-            $reservations = Reservation::where('user_id', auth()->id())
+            // Get user's room bookings
+            $bookings = Booking::where('user_id', auth()->id())
                 ->with('room') // Eager load room relationship
                 ->get()
-                ->map(function ($reservation) {
+                ->map(function ($booking) {
                     return [
-                        'id' => $reservation->id,
-                        'room_name' => $reservation->room->room_title ?? 'Chambre non disponible',
-                        'image' => $reservation->room->image ?? null,
-                        'check_in' => $reservation->check_in,
-                        'check_out' => $reservation->check_out,
-                        'status' => $reservation->status ?? 'pending',
-                        'total_price' => $reservation->room->price ?? 0,
-                        'created_at' => $reservation->created_at
+                        'id' => $booking->id,
+                        'type' => 'room',
+                        'name' => $booking->room->room_title ?? 'Chambre non disponible',
+                        'image' => $booking->room->image ?? null,
+                        'booking_date' => $booking->start_date,
+                        'end_date' => $booking->end_date,
+                        'status' => $booking->status ?? 'pending',
+                        'total_price' => $booking->room->price ?? 0,
+                        'number_of_people' => 0,
+                        'special_requests' => null,
+                        'details_url' => url('/room_details/' . $booking->room_id),
                     ];
                 });
 
-            return view('home.my_reservations', compact('reservations'));
+            return view('home.my_reservations', [
+                'reservations' => $bookings
+            ]);
         }
 
 

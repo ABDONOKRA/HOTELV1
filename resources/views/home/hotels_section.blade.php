@@ -25,7 +25,7 @@
                         <li><i class="fa fa-swimming-pool me-2"></i> Pool Access</li>
                         <li><i class="fa fa-utensils me-2"></i> Restaurant</li>
                     </ul>
-                    <a href="#" class="btn btn-primary">View Details</a>
+                    <a href="{{ route('home.hotels_services') }}" class="btn btn-primary">View Details</a>
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
                         <li><i class="fa fa-spa me-2"></i> Spa Services</li>
                         <li><i class="fa fa-water me-2"></i> Water Sports</li>
                     </ul>
-                    <a href="#" class="btn btn-primary">View Details</a>
+                    <a href="{{ route('home.hotels_services') }}" class="btn btn-primary">View Details</a>
                 </div>
             </div>
         </div>
@@ -73,7 +73,7 @@
                         <li><i class="fa fa-hiking me-2"></i> Hiking Trails</li>
                         <li><i class="fa fa-fire me-2"></i> Fireplace</li>
                     </ul>
-                    <a href="#" class="btn btn-primary">View Details</a>
+                    <a href="{{ route('home.hotels_services') }}" class="btn btn-primary">View Details</a>
                 </div>
             </div>
         </div>

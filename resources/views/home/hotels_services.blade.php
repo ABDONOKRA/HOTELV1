@@ -339,7 +339,7 @@
                                         <span>{{ $activity->duration_in_hours }} heures de soin</span>
                                     </div>
                                     <div class="spa-price">{{ $activity->price }}€ <span class="fs-6">par personne</span></div>
-                                    <a href="{{ route('activity.details', $activity->id) }}" class="btn btn-book-spa w-100">
+                                    <a href="{{ route('spa.details', $activity->id) }}" class="btn btn-book-spa w-100">
                                         <i class="fas fa-spa me-2"></i>Réserver ce soin
                                     </a>
                                 </div>

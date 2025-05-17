@@ -3,21 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ $activity->name }} - Spa Service</title>
     @include('home.css')
-    <title>{{ $activity->name }} - Activity Details</title>
-
+    
     <!-- CSS Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
-    <!-- JS Bootstrap (avec Popper inclus) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
     <style>
         .main-layout {
             padding-top: 90px;
         }
-        .activity-image {
+        .service-image {
             width: 100%;
             height: 400px;
             object-fit: cover;
@@ -29,12 +26,12 @@
             padding: 30px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        .activity-description {
+        .service-description {
             font-size: 1.1em;
             line-height: 1.8;
             color: #4a5568;
         }
-        .activity-features {
+        .service-features {
             background: #f8fafc;
             padding: 20px;
             border-radius: 10px;
@@ -45,26 +42,6 @@
             color: #2c5282;
             font-weight: 600;
         }
-        .difficulty-badge {
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: 500;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-        .difficulty-easy {
-            background-color: #c6f6d5;
-            color: #276749;
-        }
-        .difficulty-moderate {
-            background-color: #fefcbf;
-            color: #975a16;
-        }
-        .difficulty-hard {
-            background-color: #fed7d7;
-            color: #c53030;
-        }
     </style>
 </head>
 <body class="main-layout">
@@ -72,8 +49,7 @@
     <div class="loader_bg">
         <div class="loader"><img src="{{ asset('images/loading.gif') }}" alt="#"/></div>
     </div>
-
-    <!-- header -->
+    
     <header>
         @include('home.header')
     </header>
@@ -89,29 +65,23 @@
                     </ol>
                 </nav>
 
-                <img src="{{ asset($activity->image) }}" alt="{{ $activity->name }}" class="activity-image mb-4">
-                
-                <span class="difficulty-badge difficulty-{{ strtolower($activity->difficulty) }}">
-                    {{ $activity->difficulty }}
-                </span>
+                <img src="{{ asset($activity->image) }}" alt="{{ $activity->name }}" class="service-image mb-4">
                 
                 <h1 class="mb-4">{{ $activity->name }}</h1>
                 
-                <div class="activity-description">
+                <div class="service-description">
                     {{ $activity->description }}
                 </div>
 
-                <div class="activity-features">
-                    <h3 class="mb-3">Détails de l'activité</h3>
+                <div class="service-features">
+                    <h3 class="mb-3">Détails du service</h3>
                     <div class="row">
                         <div class="col-md-6">
                             <p><i class="far fa-clock me-2"></i> Durée: {{ $activity->duration_in_hours }} heures</p>
-                            @if($activity->elevation)
-                                <p><i class="fas fa-mountain me-2"></i> Dénivelé: {{ $activity->elevation }}</p>
-                            @endif
+                            <p><i class="fas fa-user-friends me-2"></i> Service individuel</p>
                         </div>
                         <div class="col-md-6">
-                            <p><i class="fas fa-users me-2"></i> Activité de groupe</p>
+                            <p><i class="fas fa-spa me-2"></i> Soin professionnel</p>
                             <p><i class="fas fa-tag me-2"></i> Prix: <span class="price-tag">{{ $activity->price }}€</span></p>
                         </div>
                     </div>
@@ -120,7 +90,7 @@
 
             <div class="col-lg-4">
                 <div class="booking-form">
-                    <h2 class="mb-4">Réserver cette activité</h2>
+                    <h2 class="mb-4">Réserver ce soin</h2>
                     
                     @if(session()->has('message'))
                         <div class="alert alert-success">
@@ -138,7 +108,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('activity.book', $activity->id) }}" method="POST">
+                    <form action="{{ route('spa.book', $activity->id) }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Nom complet</label>
@@ -179,7 +149,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100">
-                            <i class="fas fa-hiking me-2"></i>Réserver maintenant
+                            <i class="fas fa-spa me-2"></i>Réserver maintenant
                         </button>
                     </form>
                 </div>
@@ -188,12 +158,10 @@
     </div>
 
     @include('home.footer')
-
-    <!-- Javascript files in correct order -->
+    
+    <!-- Javascript files-->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
 </body>
 </html> 

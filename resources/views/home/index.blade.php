@@ -65,16 +65,16 @@
 
       <!-- hotels section -->
       <section id="hotels" class="section-padding">
-         @include('home.hotels_section')
-      </section>
+      @include('home.hotels_section')
+   </section>
 
-      <section id="our_room" class="section-padding">
-         @include('home.room')
-      </section>
+   <section id="our_room" class="section-padding">
+      @include('home.room')
+   </section>
 
       <!-- end our_room -->
       <!-- gallery -->
-     
+
       <section id="gallery" class="section-padding">
          @include('home.galary')
       </section>

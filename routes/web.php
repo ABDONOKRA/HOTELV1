@@ -13,7 +13,6 @@ Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.index')
 
 Route::get('/create_room' ,[AdminController::class,'create_room'])->middleware(['auth','admin']);
 
-
 Route::post('/add_room' ,[AdminController::class,'add_room'])->middleware(['auth','admin']);
 
 Route::get('/view_room' ,[AdminController::class,'view_room'])->middleware(['auth','admin']);
@@ -56,4 +55,12 @@ Route::get('/hotel_gallary' ,[HomeController::class,'hotel_gallary']);
 
 Route::get('/contact_us' ,[HomeController::class,'contact_us']);
  
- Route::get('/my_reservations' ,[HomeController::class,'my_reservations'])->name('home.my_reservations');
+Route::get('/my_reservations' ,[HomeController::class,'my_reservations'])->name('home.my_reservations');
+
+Route::get('/hotels_services', [HomeController::class, 'hotels_services'])->name('home.hotels_services');
+
+// Activity and Spa routes
+Route::get('/activity/{id}', [HomeController::class, 'activity_details'])->name('activity.details');
+Route::get('/spa/{id}', [HomeController::class, 'spa_details'])->name('spa.details');
+Route::post('/activity/book/{id}', [HomeController::class, 'book_activity'])->name('activity.book');
+Route::post('/spa/book/{id}', [HomeController::class, 'book_spa'])->name('spa.book');
