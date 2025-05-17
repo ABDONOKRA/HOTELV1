@@ -11,6 +11,9 @@ use App\Models\Gallary;
 use App\Models\Contact;
 use Notification;
 use App\Notifications\SendEmailNotification;
+use App\Models\Activity;
+use App\Models\ActivityBooking;
+use App\Models\SpaBooking;
 
 class AdminController extends Controller
 {
@@ -264,5 +267,158 @@ return view('admin.all_messages',compact('data'));
             return redirect()->back();
 
         }
+
+    public function create_activity()
+    {
+        return view('admin.create_activity');
+    }
+
+    public function store_activity(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'type' => 'required|in:activity,spa',
+            'description' => 'required',
+            'price' => 'required|numeric|min:0',
+            'duration_in_hours' => 'required|integer|min:1',
+            'difficulty' => 'nullable|in:easy,moderate,hard',
+            'elevation' => 'nullable|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        $activity = new Activity;
+        $activity->name = $request->name;
+        $activity->type = $request->type;
+        $activity->description = $request->description;
+        $activity->price = $request->price;
+        $activity->duration_in_hours = $request->duration_in_hours;
+        $activity->difficulty = $request->difficulty;
+        $activity->elevation = $request->elevation;
+
+        if($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move('activity', $imageName);
+            $activity->image = $imageName;
+        }
+
+        $activity->save();
+
+        return redirect()->back()->with('message', 'Activity/Service added successfully');
+    }
+
+    public function view_activities()
+    {
+        $activities = Activity::all();
+        return view('admin.view_activities', compact('activities'));
+    }
+
+    public function edit_activity($id)
+    {
+        $activity = Activity::findOrFail($id);
+        return view('admin.edit_activity', compact('activity'));
+    }
+
+    public function update_activity(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'type' => 'required|in:activity,spa',
+            'description' => 'required',
+            'price' => 'required|numeric|min:0',
+            'duration_in_hours' => 'required|integer|min:1',
+            'difficulty' => 'nullable|in:easy,moderate,hard',
+            'elevation' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        $activity = Activity::findOrFail($id);
+        $activity->name = $request->name;
+        $activity->type = $request->type;
+        $activity->description = $request->description;
+        $activity->price = $request->price;
+        $activity->duration_in_hours = $request->duration_in_hours;
+        $activity->difficulty = $request->difficulty;
+        $activity->elevation = $request->elevation;
+
+        if($request->hasFile('image')) {
+            // Delete old image
+            if($activity->image) {
+                $oldImagePath = public_path('activity/' . $activity->image);
+                if(file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+            
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move('activity', $imageName);
+            $activity->image = $imageName;
+        }
+
+        $activity->save();
+
+        return redirect()->back()->with('message', 'Activity/Service updated successfully');
+    }
+
+    public function delete_activity($id)
+    {
+        $activity = Activity::findOrFail($id);
+        
+        // Delete image file
+        if($activity->image) {
+            $imagePath = public_path('activity/' . $activity->image);
+            if(file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+        
+        $activity->delete();
+        return redirect()->back()->with('message', 'Activity/Service deleted successfully');
+    }
+
+    public function view_activity_bookings()
+    {
+        $bookings = ActivityBooking::with(['user', 'activity'])->get();
+        return view('admin.activity_bookings', compact('bookings'));
+    }
+
+    public function view_spa_bookings()
+    {
+        $bookings = SpaBooking::with(['user', 'spaService'])->get();
+        return view('admin.spa_bookings', compact('bookings'));
+    }
+
+    public function confirm_activity_booking($id)
+    {
+        $booking = ActivityBooking::findOrFail($id);
+        $booking->status = 'confirmed';
+        $booking->save();
+        return redirect()->back()->with('message', 'Activity booking confirmed successfully');
+    }
+
+    public function cancel_activity_booking($id)
+    {
+        $booking = ActivityBooking::findOrFail($id);
+        $booking->status = 'cancelled';
+        $booking->save();
+        return redirect()->back()->with('message', 'Activity booking cancelled successfully');
+    }
+
+    public function confirm_spa_booking($id)
+    {
+        $booking = SpaBooking::findOrFail($id);
+        $booking->status = 'confirmed';
+        $booking->save();
+        return redirect()->back()->with('message', 'Spa booking confirmed successfully');
+    }
+
+    public function cancel_spa_booking($id)
+    {
+        $booking = SpaBooking::findOrFail($id);
+        $booking->status = 'cancelled';
+        $booking->save();
+        return redirect()->back()->with('message', 'Spa booking cancelled successfully');
+    }
 }
       

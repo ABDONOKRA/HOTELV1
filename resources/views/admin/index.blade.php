@@ -13,7 +13,7 @@
       
       <!-- Page Content -->
       <div class="page">
-        <!--@include('admin.body')-->
+        @include('admin.body')
         @include('admin.footer')
       </div>
     </div>

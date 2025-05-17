@@ -1,278 +1,281 @@
   <div class="page-content">
+    <!-- Page Header -->
         <div class="page-header">
           <div class="container-fluid">
-            <h2 class="h5 no-margin-bottom">Dashboard</h2>
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <h1 class="page-title">Dashboard</h1>
+                    <p class="text-muted">Hotel Management Overview</p>
+                </div>
+                <div class="col text-right">
+                    <div class="btn-group">
+                        <button class="btn btn-light">Today</button>
+                        <button class="btn btn-light active">Week</button>
+                        <button class="btn btn-light">Month</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <section class="no-padding-top no-padding-bottom">
+
+    <!-- Stats Cards -->
+    <section class="stats-section mb-4">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-md-3 col-sm-6">
-                <div class="statistic-block block">
-                  <div class="progress-details d-flex align-items-end justify-content-between">
-                    <div class="title">
-                      <div class="icon"><i class="icon-user-1"></i></div><strong>New Clients</strong>
-                    </div>
-                    <div class="number dashtext-1">27</div>
-                  </div>
-                  <div class="progress progress-template">
-                    <div role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
-                  </div>
+                <!-- Room Bookings -->
+                <div class="col-xl-3 col-md-6">
+                    <div class="stats-card">
+                        <div class="stats-card-content">
+                            <div class="stats-icon bg-primary-light">
+                                <i class="fa fa-bed text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="stats-label">Room Bookings</h5>
+                                <h3 class="stats-value">127</h3>
+                                <p class="stats-change positive">
+                                    <i class="fa fa-arrow-up"></i> +12.5%
+                                </p>
+                            </div>
+                </div>
+                        <div class="stats-chart">
+                            <canvas id="roomBookingsChart" height="50"></canvas>
                 </div>
               </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="statistic-block block">
-                  <div class="progress-details d-flex align-items-end justify-content-between">
-                    <div class="title">
-                      <div class="icon"><i class="icon-contract"></i></div><strong>New Projects</strong>
+                </div>
+
+                <!-- Activities -->
+                <div class="col-xl-3 col-md-6">
+                    <div class="stats-card">
+                        <div class="stats-card-content">
+                            <div class="stats-icon bg-success-light">
+                                <i class="fa fa-hiking text-success"></i>
+              </div>
+                            <div>
+                                <h5 class="stats-label">Activities Booked</h5>
+                                <h3 class="stats-value">48</h3>
+                                <p class="stats-change positive">
+                                    <i class="fa fa-arrow-up"></i> +8.2%
+                                </p>
+            </div>
+          </div>
+                        <div class="stats-chart">
+                            <canvas id="activitiesChart" height="50"></canvas>
+                      </div>
                     </div>
-                    <div class="number dashtext-2">375</div>
                   </div>
-                  <div class="progress progress-template">
-                    <div role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-2"></div>
+
+                <!-- Spa Services -->
+                <div class="col-xl-3 col-md-6">
+                    <div class="stats-card">
+                        <div class="stats-card-content">
+                            <div class="stats-icon bg-info-light">
+                                <i class="fa fa-spa text-info"></i>
+                            </div>
+                            <div>
+                                <h5 class="stats-label">Spa Bookings</h5>
+                                <h3 class="stats-value">35</h3>
+                                <p class="stats-change negative">
+                                    <i class="fa fa-arrow-down"></i> -3.1%
+                                </p>
+                            </div>
+                        </div>
+                        <div class="stats-chart">
+                            <canvas id="spaChart" height="50"></canvas>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="statistic-block block">
-                  <div class="progress-details d-flex align-items-end justify-content-between">
-                    <div class="title">
-                      <div class="icon"><i class="icon-paper-and-pencil"></i></div><strong>New Invoices</strong>
+
+                <!-- Revenue -->
+                <div class="col-xl-3 col-md-6">
+                    <div class="stats-card">
+                        <div class="stats-card-content">
+                            <div class="stats-icon bg-warning-light">
+                                <i class="fa fa-euro-sign text-warning"></i>
+                            </div>
+                            <div>
+                                <h5 class="stats-label">Revenue</h5>
+                                <h3 class="stats-value">€24,500</h3>
+                                <p class="stats-change positive">
+                                    <i class="fa fa-arrow-up"></i> +15.3%
+                                </p>
                     </div>
-                    <div class="number dashtext-3">140</div>
                   </div>
-                  <div class="progress progress-template">
-                    <div role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-3"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="statistic-block block">
-                  <div class="progress-details d-flex align-items-end justify-content-between">
-                    <div class="title">
-                      <div class="icon"><i class="icon-writing-whiteboard"></i></div><strong>All Projects</strong>
+                        <div class="stats-chart">
+                            <canvas id="revenueChart" height="50"></canvas>
                     </div>
-                    <div class="number dashtext-4">41</div>
-                  </div>
-                  <div class="progress progress-template">
-                    <div role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-4"></div>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
-        <section class="no-padding-bottom">
+
+    <!-- Main Content -->
+    <section class="main-content">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-lg-4">
-                <div class="bar-chart block no-margin-bottom">
-                  <canvas id="barChartExample1"></canvas>
+                <!-- Bookings Overview -->
+                <div class="col-xl-8 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Bookings Overview</h5>
+                            <div class="card-actions">
+                                <button class="btn btn-sm btn-light">Export</button>
+                                <button class="btn btn-sm btn-light">Filter</button>
+                  </div>
                 </div>
-                <div class="bar-chart block">
-                  <canvas id="barChartExample2"></canvas>
+                        <div class="card-body">
+                            <canvas id="bookingsOverviewChart" height="300"></canvas>
+              </div>
+                  </div>
+                </div>
+
+                <!-- Recent Activities -->
+                <div class="col-xl-4 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Recent Activities</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="activity-feed">
+                                <div class="activity-item">
+                                    <div class="activity-icon bg-primary-light">
+                                        <i class="fa fa-key text-primary"></i>
+              </div>
+                                    <div class="activity-content">
+                                        <h6>New Check-in</h6>
+                                        <p>Room 304 - John Smith</p>
+                                        <small class="text-muted">5 mins ago</small>
+                  </div>
+                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon bg-success-light">
+                                        <i class="fa fa-hiking text-success"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <h6>Activity Booked</h6>
+                                        <p>Mountain Hiking - 3 persons</p>
+                                        <small class="text-muted">15 mins ago</small>
+              </div>
+            </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon bg-info-light">
+                                        <i class="fa fa-spa text-info"></i>
+                </div>
+                                    <div class="activity-content">
+                                        <h6>Spa Appointment</h6>
+                                        <p>Massage Session - Sarah Johnson</p>
+                                        <small class="text-muted">1 hour ago</small>
+                  </div>
                 </div>
               </div>
-              <div class="col-lg-8">
-                <div class="line-cahrt block">
-                  <canvas id="lineCahrt"></canvas>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-        <section class="no-padding-bottom">
-          <div class="container-fluid">
+
             <div class="row">
-              <div class="col-lg-6">
-                <div class="stats-2-block block d-flex">
-                  <div class="stats-2 d-flex">
-                    <div class="stats-2-arrow low"><i class="fa fa-caret-down"></i></div>
-                    <div class="stats-2-content"><strong class="d-block">5.657</strong><span class="d-block">Standard Scans</span>
-                      <div class="progress progress-template progress-small">
-                        <div role="progressbar" style="width: 60%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template progress-bar-small dashbg-2"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="stats-2 d-flex">
-                    <div class="stats-2-arrow height"><i class="fa fa-caret-up"></i></div>
-                    <div class="stats-2-content"><strong class="d-block">3.1459</strong><span class="d-block">Team Scans</span>
-                      <div class="progress progress-template progress-small">
-                        <div role="progressbar" style="width: 35%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template progress-bar-small dashbg-3"></div>
-                      </div>
-                    </div>
+                <!-- Room Availability -->
+                <div class="col-xl-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Room Availability</h5>
+                </div>
+                        <div class="card-body">
+                            <div class="room-availability">
+                                <div class="availability-item">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span>Standard Rooms</span>
+                                        <span class="badge bg-success">12 Available</span>
+                </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success" style="width: 60%"></div>
                   </div>
                 </div>
-                <div class="stats-3-block block d-flex">
-                  <div class="stats-3"><strong class="d-block">745</strong><span class="d-block">Total requests</span>
-                    <div class="progress progress-template progress-small">
-                      <div role="progressbar" style="width: 35%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template progress-bar-small dashbg-1"></div>
-                    </div>
-                  </div>
-                  <div class="stats-3 d-flex justify-content-between text-center">
-                    <div class="item"><strong class="d-block strong-sm">4.124</strong><span class="d-block span-sm">Threats</span>
-                      <div class="line"></div><small>+246</small>
-                    </div>
-                    <div class="item"><strong class="d-block strong-sm">2.147</strong><span class="d-block span-sm">Neutral</span>
-                      <div class="line"></div><small>+416</small>
-                    </div>
-                  </div>
-                </div>
+                                <div class="availability-item">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span>Deluxe Rooms</span>
+                                        <span class="badge bg-warning">5 Available</span>
               </div>
-              <div class="col-lg-6">
-                <div class="drills-chart block">
-                  <canvas id="lineChart1"></canvas>
-                </div>
-              </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-warning" style="width: 75%"></div>
             </div>
           </div>
-        </section>
-        <section class="no-padding-bottom">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-lg-4">
-                <div class="user-block block text-center">
-                  <div class="avatar"><img src="admin/img/avatar-1.jpg" alt="..." class="img-fluid">
-                    <div class="order dashbg-2">1st</div>
-                  </div><a href="#" class="user-title">
-                    <h3 class="h5">Richard Nevoreski</h3><span>@richardnevo</span></a>
-                  <div class="contributions">950 Contributions</div>
-                  <div class="details d-flex">
-                    <div class="item"><i class="icon-info"></i><strong>150</strong></div>
-                    <div class="item"><i class="fa fa-gg"></i><strong>340</strong></div>
-                    <div class="item"><i class="icon-flow-branch"></i><strong>460</strong></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="user-block block text-center">
-                  <div class="avatar"><img src="admin/img/avatar-4.jpg" alt="..." class="img-fluid">
-                    <div class="order dashbg-1">2nd</div>
-                  </div><a href="#" class="user-title">
-                    <h3 class="h5">Samuel Watson</h3><span>@samwatson</span></a>
-                  <div class="contributions">772 Contributions</div>
-                  <div class="details d-flex">
-                    <div class="item"><i class="icon-info"></i><strong>80</strong></div>
-                    <div class="item"><i class="fa fa-gg"></i><strong>420</strong></div>
-                    <div class="item"><i class="icon-flow-branch"></i><strong>272</strong></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="user-block block text-center">
-                  <div class="avatar"><img src="admin/img/avatar-6.jpg" alt="..." class="img-fluid">
-                    <div class="order dashbg-4">3rd</div>
-                  </div><a href="#" class="user-title">
-                    <h3 class="h5">Sebastian Wood</h3><span>@sebastian</span></a>
-                  <div class="contributions">620 Contributions</div>
-                  <div class="details d-flex">
-                    <div class="item"><i class="icon-info"></i><strong>150</strong></div>
-                    <div class="item"><i class="fa fa-gg"></i><strong>280</strong></div>
-                    <div class="item"><i class="icon-flow-branch"></i><strong>190</strong></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="public-user-block block">
-              <div class="row d-flex align-items-center">                   
-                <div class="col-lg-4 d-flex align-items-center">
-                  <div class="order">4th</div>
-                  <div class="avatar"> <img src="admin/img/avatar-1.jpg" alt="..." class="img-fluid"></div><a href="#" class="name"><strong class="d-block">Tomas Hecktor</strong><span class="d-block">@tomhecktor</span></a>
-                </div>
-                <div class="col-lg-4 text-center">
-                  <div class="contributions">410 Contributions</div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="details d-flex">
-                    <div class="item"><i class="icon-info"></i><strong>110</strong></div>
-                    <div class="item"><i class="fa fa-gg"></i><strong>200</strong></div>
-                    <div class="item"><i class="icon-flow-branch"></i><strong>100</strong></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="public-user-block block">
-              <div class="row d-flex align-items-center">                   
-                <div class="col-lg-4 d-flex align-items-center">
-                  <div class="order">5th</div>
-                  <div class="avatar"> <img src="admin/img/avatar-2.jpg" alt="..." class="img-fluid"></div><a href="#" class="name"><strong class="d-block">Alexander Shelby</strong><span class="d-block">@alexshelby</span></a>
-                </div>
-                <div class="col-lg-4 text-center">
-                  <div class="contributions">320 Contributions</div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="details d-flex">
-                    <div class="item"><i class="icon-info"></i><strong>150</strong></div>
-                    <div class="item"><i class="fa fa-gg"></i><strong>120</strong></div>
-                    <div class="item"><i class="icon-flow-branch"></i><strong>50</strong></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="public-user-block block">
-              <div class="row d-flex align-items-center">                   
-                <div class="col-lg-4 d-flex align-items-center">
-                  <div class="order">6th</div>
-                  <div class="avatar"> <img src="admin/img/avatar-6.jpg" alt="..." class="img-fluid"></div><a href="#" class="name"><strong class="d-block">Arther Kooper</strong><span class="d-block">@artherkooper</span></a>
-                </div>
-                <div class="col-lg-4 text-center">
-                  <div class="contributions">170 Contributions</div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="details d-flex">
-                    <div class="item"><i class="icon-info"></i><strong>60</strong></div>
-                    <div class="item"><i class="fa fa-gg"></i><strong>70</strong></div>
-                    <div class="item"><i class="icon-flow-branch"></i><strong>40</strong></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="margin-bottom-sm">
-          <div class="container-fluid">
-            <div class="row d-flex align-items-stretch">
-              <div class="col-lg-4">
-                <div class="stats-with-chart-1 block">
-                  <div class="title"> <strong class="d-block">Sales Difference</strong><span class="d-block">Lorem ipsum dolor sit</span></div>
-                  <div class="row d-flex align-items-end justify-content-between">
-                    <div class="col-5">
-                      <div class="text"><strong class="d-block dashtext-3">$740</strong><span class="d-block">May 2017</span><small class="d-block">320 Sales</small></div>
+                                <div class="availability-item">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span>Suites</span>
+                                        <span class="badge bg-danger">2 Available</span>
                     </div>
-                    <div class="col-7">
-                      <div class="bar-chart chart">
-                        <canvas id="salesBarChart1"></canvas>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-danger" style="width: 90%"></div>
+                      </div>
+                    </div>
                       </div>
                     </div>
                   </div>
                 </div>
+
+                <!-- Popular Activities -->
+                <div class="col-xl-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Popular Activities</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Activity</th>
+                                            <th>Bookings</th>
+                                            <th>Rating</th>
+                                            <th>Revenue</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Mountain Hiking</td>
+                                            <td>45</td>
+                                            <td>
+                                                <div class="rating">
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star-half text-warning"></i>
               </div>
-              <div class="col-lg-4">   
-                <div class="stats-with-chart-1 block">
-                  <div class="title"> <strong class="d-block">Visit Statistics</strong><span class="d-block">Lorem ipsum dolor sit</span></div>
-                  <div class="row d-flex align-items-end justify-content-between">
-                    <div class="col-4">
-                      <div class="text"><strong class="d-block dashtext-1">$457</strong><span class="d-block">May 2017</span><small class="d-block">210 Sales</small></div>
+                                            </td>
+                                            <td>€2,250</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Spa Massage</td>
+                                            <td>38</td>
+                                            <td>
+                                                <div class="rating">
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
                     </div>
-                    <div class="col-8">
-                      <div class="bar-chart chart">
-                        <canvas id="visitPieChart"></canvas>
+                                            </td>
+                                            <td>€1,900</td>
+                                        </tr>
+                                        <tr>
+                                            <td>City Tour</td>
+                                            <td>32</td>
+                                            <td>
+                                                <div class="rating">
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star-o text-warning"></i>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="stats-with-chart-1 block">
-                  <div class="title"> <strong class="d-block">Sales Activities</strong><span class="d-block">Lorem ipsum dolor sit</span></div>
-                  <div class="row d-flex align-items-end justify-content-between">
-                    <div class="col-5">
-                      <div class="text"><strong class="d-block dashtext-2">80%</strong><span class="d-block">May 2017</span><small class="d-block">+35 Sales</small></div>
-                    </div>
-                    <div class="col-7">
-                      <div class="bar-chart chart">
-                        <canvas id="salesBarChart2"></canvas>
-                      </div>
+                                            </td>
+                                            <td>€1,600</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                     </div>
                   </div>
                 </div>
@@ -280,99 +283,369 @@
             </div>
           </div>
         </section>
-        <section class="no-padding-bottom">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="checklist-block block">
-                  <div class="title"><strong>To Do List</strong></div>
-                  <div class="checklist">
-                    <div class="item d-flex align-items-center">
-                      <input type="checkbox" id="input-1" name="input-1" class="checkbox-template">
-                      <label for="input-1">Review daily revenue reports (occupancy, restaurant sales).</label>
                     </div>
-                    <div class="item d-flex align-items-center">
-                      <input type="checkbox" id="input-2" name="input-2" checked class="checkbox-template">
-                      <label for="input-2">Verify amenities (towels, toiletries, mini-bar) are stocked.</label>
-                    </div>
-                    <div class="item d-flex align-items-center">
-                      <input type="checkbox" id="input-3" name="input-3" class="checkbox-template">
-                      <label for="input-3">Conduct morning briefing with staff (housekeeping, reception, restaurant).</label>
-                    </div>
-                    <div class="item d-flex align-items-center">
-                      <input type="checkbox" id="input-4" name="input-4" class="checkbox-template">
-                      <label for="input-4">Handle guest complaints or special requests promptly.</label>
-                    </div>
-                    <div class="item d-flex align-items-center">
-                      <input type="checkbox" id="input-5" name="input-5" class="checkbox-template">
-                      <label for="input-5">Ensure check-in/check-out processes are smooth.</label>
-                    </div>
-                    <div class="item d-flex align-items-center">
-                      <input type="checkbox" id="input-6" name="input-6" class="checkbox-template">
-                      <label for="input-6">Approve refunds or discounts (if applicable)</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6">                                           
-                <div class="messages-block block">
-                  <div class="title"><strong>New Messages</strong></div>
-                  <div class="messages"><a href="#" class="message d-flex align-items-center">
-                      <div class="profile"><img src="admin/img/avatar-3.jpg" alt="..." class="img-fluid">
-                        <div class="status online"></div>
-                      </div>
-                      <div class="content">   <strong class="d-block">Hafsa Nokra</strong><span class="d-block">Bonjour, je souhaite modifier les dates de ma réservation (réf. #12345) du 15 au 20 août.</span><small class="date d-block">9:30am</small></div></a><a href="#" class="message d-flex align-items-center">
-                      <div class="profile"><img src="admin/img/avatar-2.jpg" alt="..." class="img-fluid">
-                        <div class="status away"></div>
-                      </div>
-                      <div class="content">   <strong class="d-block">Khalid Drissi</strong><span class="d-block">Pourriez-vous préparer la chambre avec un lit bébé et une vue mer ? Nous arrivons demain à 14h. </span><small class="date d-block">7:40am</small></div></a><a href="#" class="message d-flex align-items-center">
-                      <div class="profile"><img src="admin/img/avatar-1.jpg" alt="..." class="img-fluid">
-                        <div class="status busy"></div>
-                      </div>
-                      <div class="content">   <strong class="d-block">Sami Amzil</strong><span class="d-block">Bonjour, la climatisation de la chambre 302 ne fonctionne pas. Pouvez-vous envoyer un technicien ?</span><small class="date d-block">6:55am</small></div></a><a href="#" class="message d-flex align-items-center">
-                      <div class="profile"><img src="admin/img/avatar-5.jpg" alt="..." class="img-fluid">
-                        <div class="status offline"></div>
-                      </div>
-                      <div class="content">   <strong class="d-block">Sara Baba</strong><span class="d-block">Je constate que la salle de bain n'a pas été nettoyée aujourd'hui. Pourriez-vous remédier à cela rapidement ?</span><small class="date d-block">10:30pm</small></div></a><a href="#" class="message d-flex align-items-center">
-                      <div class="profile"><img src="admin/img/avatar-1.jpg" alt="..." class="img-fluid">
-                        <div class="status online"></div>
-                      </div>
-                      <div class="content">   <strong class="d-block">Nader Ahmed</strong><span class="d-block">Pourriez-vous préparer la chambre avec un lit bébé et une vue mer ? Nous arrivons demain à 14h. Cordialement.</span><small class="date d-block">9:47pm</small></div></a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section>
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-lg-4">
-                <div class="stats-with-chart-2 block">
-                  <div class="title"><strong class="d-block">Credit Sales</strong><span class="d-block">Lorem ipsum dolor sit</span></div>
-                  <div class="piechart chart">
-                    <canvas id="pieChartHome1"></canvas>
-                    <div class="text"><strong class="d-block">$2.145</strong><span class="d-block">Sales</span></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="stats-with-chart-2 block">
-                  <div class="title"><strong class="d-block">Channel Sales</strong><span class="d-block">Lorem ipsum dolor sit</span></div>
-                  <div class="piechart chart">
-                    <canvas id="pieChartHome2"></canvas>
-                    <div class="text"><strong class="d-block">$7.784</strong><span class="d-block">Sales</span></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="stats-with-chart-2 block">
-                  <div class="title"><strong class="d-block">Direct Sales</strong><span class="d-block">Lorem ipsum dolor sit</span></div>
-                  <div class="piechart chart">
-                    <canvas id="pieChartHome3"></canvas>
-                    <div class="text"><strong class="d-block">$4.957</strong><span class="d-block">Sales</span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+
+<style>
+/* Page Header */
+.page-header {
+    padding: 1.25rem 1.5rem;
+    background: #34373d;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.page-content {
+    padding: 0;
+    background: #2d3035;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.container-fluid {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    max-width: 100%;
+    width: 100%;
+}
+
+/* Stats Cards */
+.stats-section {
+    margin: 0;
+    width: 100%;
+}
+
+.row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.col-xl-3, .col-xl-4, .col-xl-6, .col-xl-8, .col-md-6 {
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+}
+
+.main-content {
+    padding: 0;
+    width: 100%;
+}
+
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+.text-muted {
+    color: #8a8d93 !important;
+    font-size: 0.875rem;
+}
+
+/* Stats Cards */
+.stats-card {
+    background: #34373d;
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+}
+
+.stats-card-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.stats-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.stats-label {
+    font-size: 0.875rem;
+    color: #8a8d93;
+    margin: 0;
+}
+
+.stats-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0.25rem 0;
+}
+
+.stats-change {
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.stats-change.positive {
+    color: #28a745;
+}
+
+.stats-change.negative {
+    color: #dc3545;
+}
+
+/* Cards */
+.card {
+    background: #34373d;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+}
+
+.card-header {
+    background: #2d3035;
+    border-bottom: 1px solid #444;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+.card-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Activity Feed */
+.activity-feed {
+    padding: 1rem;
+}
+
+.activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid #444;
+}
+
+.activity-item:last-child {
+    border: none;
+}
+
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.activity-content h6 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+.activity-content p {
+    font-size: 0.875rem;
+    color: #8a8d93;
+    margin: 0.25rem 0;
+}
+
+/* Room Availability */
+.room-availability {
+    padding: 1rem;
+}
+
+.availability-item {
+    margin-bottom: 1.5rem;
+}
+
+.availability-item:last-child {
+    margin-bottom: 0;
+}
+
+.progress {
+    background: #2d3035;
+    height: 0.5rem;
+    border-radius: 1rem;
+}
+
+/* Table */
+.table {
+    color: #fff;
+    margin: 0;
+}
+
+.table th {
+    border-top: none;
+    border-bottom: 1px solid #444;
+    color: #8a8d93;
+    font-weight: 500;
+    padding: 1rem;
+}
+
+.table td {
+    border-top: 1px solid #444;
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+    background: #2d3035;
+}
+
+.rating {
+    color: #ffc107;
+}
+
+/* Utility Classes */
+.bg-primary-light {
+    background: rgba(0,123,255,0.1);
+}
+
+.bg-success-light {
+    background: rgba(40,167,69,0.1);
+}
+
+.bg-info-light {
+    background: rgba(23,162,184,0.1);
+}
+
+.bg-warning-light {
+    background: rgba(255,193,7,0.1);
+}
+
+.text-primary {
+    color: #007bff !important;
+}
+
+.text-success {
+    color: #28a745 !important;
+}
+
+.text-info {
+    color: #17a2b8 !important;
+}
+
+.text-warning {
+    color: #ffc107 !important;
+}
+
+.btn-group .btn {
+    background: #2d3035;
+    border: 1px solid #444;
+    color: #8a8d93;
+    font-size: 0.875rem;
+    padding: 0.375rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.btn-group .btn:hover {
+    background: #3a3f44;
+    color: #fff;
+}
+
+.btn-group .btn.active {
+    background: #007bff;
+    border-color: #007bff;
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 1rem 0;
+    }
+
+    .stats-card {
+        margin-bottom: 1rem;
+    }
+
+    .card {
+        margin-bottom: 1rem;
+    }
+}
+</style>
+
+<script>
+// Initialize charts when the document is ready
+document.addEventListener('DOMContentLoaded', function() {
+    // Room Bookings Chart
+    new Chart(document.getElementById('roomBookingsChart').getContext('2d'), {
+        type: 'line',
+        data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            datasets: [{
+                data: [15, 18, 12, 20, 18, 22, 16],
+                borderColor: '#007bff',
+                borderWidth: 2,
+                fill: false,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { display: false },
+                y: { display: false }
+            }
+        }
+    });
+
+    // Similar chart initialization for other stats cards...
+
+    // Bookings Overview Chart
+    new Chart(document.getElementById('bookingsOverviewChart').getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Room Bookings',
+                data: [65, 59, 80, 81, 56, 55],
+                backgroundColor: '#007bff'
+            }, {
+                label: 'Activities',
+                data: [28, 48, 40, 19, 86, 27],
+                backgroundColor: '#28a745'
+            }, {
+                label: 'Spa Services',
+                data: [35, 25, 30, 45, 35, 40],
+                backgroundColor: '#17a2b8'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: '#444'
+                    }
+                }
+            }
+        }
+    });
+});
+</script>

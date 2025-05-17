@@ -5,7 +5,7 @@
       <style type="text/css">
     .table_deg
     {
-        border: 2px solid white;
+        border: 2px solid #2d3035;
         margin: auto;
         width: 80%;
         text-align: center;
@@ -18,7 +18,7 @@
     }
     tr
     {
-        border: 3px solid white;
+        border: 3px solid #2d3035;
     }
     td
      {
