@@ -1,59 +1,79 @@
-<div class="hotel-section">
-    <div class="container">
-        <div class="titlepage" style="text-align: center; margin-bottom: 50px;">
-            <h2>Nos Hôtels</h2>
-            <p style="margin: 25px auto; font-size: 1.3em; color: #2d3748; line-height: 1.8; max-width: 800px; font-family: 'Georgia', serif; font-weight: 400; letter-spacing: 0.3px; text-align: center;">
-                Découvrez nos hôtels partenaires offrant un cadre exceptionnel et un service haut de gamme. 
-                Chaque établissement a été soigneusement sélectionné pour vous garantir un séjour mémorable.
-            </p>
+<!-- Hotels Section -->
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="title">Our Featured Hotels</h2>
+        <p class="text-muted">Discover our collection of luxurious hotels and resorts</p>
+    </div>
+
+    <div class="row g-4">
+        <!-- Hotel 1 -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm hover-effect">
+                <img src="images/hotel1.jpg" class="card-img-top" alt="Luxury Hotel" style="height: 250px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Grand Plaza Hotel</h5>
+                    <div class="mb-2">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                    </div>
+                    <p class="card-text">Experience ultimate luxury in the heart of the city. Features include a rooftop pool, spa, and gourmet restaurants.</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-wifi me-2"></i> Free Wi-Fi</li>
+                        <li><i class="fa fa-swimming-pool me-2"></i> Pool Access</li>
+                        <li><i class="fa fa-utensils me-2"></i> Restaurant</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
         </div>
 
-        <div class="row">
-            <!-- Hôtel 1 -->
-            <div class="col-md-4 col-sm-6">
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <figure><img src="images/room5.jpg" alt="Hôtel Royal Mansour" style="width:100%; height:200px; object-fit: cover;"></figure>
+        <!-- Hotel 2 -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm hover-effect">
+                <img src="images/hotel2.jpg" class="card-img-top" alt="Beach Resort" style="height: 250px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Seaside Resort & Spa</h5>
+                    <div class="mb-2">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star-half text-warning"></i>
                     </div>
-                    <div class="hotel-info">
-                        <h3>Royal Mansour</h3>
-                        <div class="stars">★★★★★</div>
-                        <p class="description">Un palace emblématique de Marrakech, alliant luxe traditionnel et modernité. Chaque suite est une véritable résidence privée avec patio.</p>
-                        <div class="price">À partir de 800€/nuit</div>
-                        <a href="{{ route('hotels_services') }}" class="btn btn-primary">Voir détails</a>
-                    </div>
+                    <p class="card-text">Beachfront paradise with private beach access, water sports, and world-class spa treatments.</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-umbrella-beach me-2"></i> Private Beach</li>
+                        <li><i class="fa fa-spa me-2"></i> Spa Services</li>
+                        <li><i class="fa fa-water me-2"></i> Water Sports</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">View Details</a>
                 </div>
             </div>
+        </div>
 
-            <!-- Hôtel 2 -->
-            <div class="col-md-4 col-sm-6">
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <figure><img src="images/room5.jpg" alt="La Mamounia" style="width:100%; height:200px; object-fit: cover;"></figure>
+        <!-- Hotel 3 -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm hover-effect">
+                <img src="images/hotel3.jpg" class="card-img-top" alt="Mountain Resort" style="height: 250px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Mountain View Lodge</h5>
+                    <div class="mb-2">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
                     </div>
-                    <div class="hotel-info">
-                        <h3>La Mamounia</h3>
-                        <div class="stars">★★★★☆</div>
-                        <p class="description">Joyau architectural avec jardins luxuriants et spa exceptionnel. Une expérience unique au cœur de la ville ocre.</p>
-                        <div class="price">À partir de 600€/nuit</div>
-                        <a href="{{ route('hotels_services') }}" class="btn btn-primary">Voir détails</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Hôtel 3 -->
-            <div class="col-md-4 col-sm-6">
-                <div class="hotel-card">
-                    <div class="hotel-img">
-                        <figure><img src="images/room5.jpg" alt="Riad Farnatchi" style="width:100%; height:200px; object-fit: cover;"></figure>
-                    </div>
-                    <div class="hotel-info">
-                        <h3>Riad Farnatchi</h3>
-                        <div class="stars">★★★★★</div>
-                        <p class="description">Riad intime et raffiné avec seulement 9 suites. Service personnalisé et décoration marocaine contemporaine.</p>
-                        <div class="price">À partir de 450€/nuit</div>
-                        <a href="{{ route('hotels_services') }}" class="btn btn-primary">Voir détails</a>
-                    </div>
+                    <p class="card-text">Nestled in the mountains, offering scenic views, hiking trails, and cozy accommodations.</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-mountain me-2"></i> Mountain Views</li>
+                        <li><i class="fa fa-hiking me-2"></i> Hiking Trails</li>
+                        <li><i class="fa fa-fire me-2"></i> Fireplace</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">View Details</a>
                 </div>
             </div>
         </div>
@@ -61,65 +81,44 @@
 </div>
 
 <style>
-.hotel-section {
-    padding: 60px 0;
-    background-color: #f9f9f9;
+.hover-effect {
+    transition: transform 0.3s ease-in-out;
 }
 
-.hotel-card {
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
-    transition: transform 0.3s ease;
-}
-
-.hotel-card:hover {
+.hover-effect:hover {
     transform: translateY(-5px);
 }
 
-.hotel-info {
-    padding: 20px;
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
 }
 
-.hotel-info h3 {
-    color: #2c3e50;
-    margin-top: 0;
-    font-size: 1.4em;
+.card-img-top {
+    transition: transform 0.3s ease-in-out;
 }
 
-.stars {
-    color: #FFD700;
-    margin: 5px 0;
-    font-size: 1.1em;
-}
-
-.description {
-    color: #666;
-    margin-bottom: 15px;
-    font-size: 1em;
-    line-height: 1.6;
-}
-
-.price {
-    color: #4a90e2;
-    font-weight: bold;
-    margin-bottom: 15px;
-    font-size: 1.1em;
+.card:hover .card-img-top {
+    transform: scale(1.05);
 }
 
 .btn-primary {
-    background-color: #4a90e2;
-    color: white;
-    padding: 8px 20px;
-    border-radius: 4px;
-    text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.3s;
+    background-color: #1c1c1c;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .btn-primary:hover {
-    background-color: #3a7bc8;
+    background-color: #333;
 }
-</style>
+
+.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #1c1c1c;
+}
+</style> 

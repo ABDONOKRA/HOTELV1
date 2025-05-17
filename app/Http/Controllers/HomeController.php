@@ -8,6 +8,7 @@ use App\Models\Booking;
 use App\Models\Contact;
 use App\Models\Gallary;
 use App\Http\Controllers\Compact;
+use App\Models\Reservation;
 
 
  
@@ -93,7 +94,39 @@ class HomeController extends Controller
 
         }
         
+        public function index()
+        {
+            $room = Room::all();
+            $gallary = Gallary::all();
+            return view('home.index', compact('room', 'gallary'));
+        }
         
+        public function my_reservations()
+        {
+            // Check if user is authenticated
+            if (!auth()->check()) {
+                return redirect('login');
+            }
+
+            // Get user's reservations
+            $reservations = Reservation::where('user_id', auth()->id())
+                ->with('room') // Eager load room relationship
+                ->get()
+                ->map(function ($reservation) {
+                    return [
+                        'id' => $reservation->id,
+                        'room_name' => $reservation->room->room_title ?? 'Chambre non disponible',
+                        'image' => $reservation->room->image ?? null,
+                        'check_in' => $reservation->check_in,
+                        'check_out' => $reservation->check_out,
+                        'status' => $reservation->status ?? 'pending',
+                        'total_price' => $reservation->room->price ?? 0,
+                        'created_at' => $reservation->created_at
+                    ];
+                });
+
+            return view('home.my_reservations', compact('reservations'));
+        }
 
 
 

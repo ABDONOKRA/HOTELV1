@@ -4,8 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 
-Route::get('/' ,[AdminController::class,'home'])->name('homee');
-Route::get('/home' ,[AdminController::class,'index'])->name('home');
+// Home routes
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+
+// Admin routes
+Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.index')->middleware(['auth','admin']);
 
 Route::get('/create_room' ,[AdminController::class,'create_room'])->middleware(['auth','admin']);
 
@@ -52,3 +56,4 @@ Route::get('/hotel_gallary' ,[HomeController::class,'hotel_gallary']);
 
 Route::get('/contact_us' ,[HomeController::class,'contact_us']);
  
+ Route::get('/my_reservations' ,[HomeController::class,'my_reservations'])->name('home.my_reservations');

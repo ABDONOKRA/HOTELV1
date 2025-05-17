@@ -36,11 +36,11 @@
                      @auth
                         @if(Auth::user()->usertype=='admin')
                            <li class="nav-item">
-                              <a class="nav-link" href="#">Dashboard</a>
+                              <a class="nav-link" href="{{ route('admin.index') }}">Dashboard</a>
                            </li>
                         @else
                            <li class="nav-item">
-                              <a class="nav-link {{ request()->is('my-reservations') ? 'active' : '' }}" href="{{ route('my.reservations') }}">
+                              <a class="nav-link {{ request()->is('my-reservations') ? 'active' : '' }}" href="{{ route('home.my_reservations') }}">
                                  <i class="far fa-calendar-alt"></i> Mes Réservations
                               </a>
                            </li>
