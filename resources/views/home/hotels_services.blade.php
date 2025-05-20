@@ -287,7 +287,7 @@
                     @if($activity->type == 'activity')
                         <div class="col-lg-4 col-md-6">
                             <div class="activity-card">
-                                <img src="{{ asset($activity->image) }}" class="activity-img" alt="{{ $activity->name }}">
+                                <img src="{{ asset('activities/' . $activity->image) }}" class="activity-img" alt="{{ $activity->name }}">
                                 <div class="activity-content">
                                     <span class="difficulty-badge difficulty-{{ strtolower($activity->difficulty) }}">
                                         {{ ucfirst($activity->difficulty) }}
@@ -329,7 +329,7 @@
                     @if($activity->type == 'spa')
                         <div class="col-lg-6">
                             <div class="spa-card">
-                                <img src="{{ asset($activity->image) }}" class="spa-img" alt="{{ $activity->name }}">
+                                <img src="{{ asset('activities/' . $activity->image) }}" class="spa-img" alt="{{ $activity->name }}">
                                 <div class="spa-content">
                                     <h3 class="spa-title">{{ $activity->name }}</h3>
                                     <p class="spa-description">{{ $activity->description }}</p>

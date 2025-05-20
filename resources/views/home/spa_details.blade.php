@@ -65,7 +65,7 @@
                     </ol>
                 </nav>
 
-                <img src="{{ asset($activity->image) }}" alt="{{ $activity->name }}" class="service-image mb-4">
+                <img src="{{ asset('activities/' . $activity->image) }}" alt="{{ $activity->name }}" class="service-image mb-4">
                 
                 <h1 class="mb-4">{{ $activity->name }}</h1>
                 

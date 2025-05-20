@@ -150,7 +150,7 @@
                         <tbody>
                             @foreach($activities as $activity)
                             <tr>
-                                <td><img class="img_size" src="/activity/{{ $activity->image }}" alt="{{ $activity->name }}"></td>
+                                <td><img class="img_size" src="/activities/{{ $activity->image }}" alt="{{ $activity->name }}"></td>
                                 <td>{{ $activity->name }}</td>
                                 <td>
                                     <span class="badge badge-{{ $activity->type }}">

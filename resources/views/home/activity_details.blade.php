@@ -89,7 +89,7 @@
                     </ol>
                 </nav>
 
-                <img src="{{ asset($activity->image) }}" alt="{{ $activity->name }}" class="activity-image mb-4">
+                <img src="{{ asset('activities/' . $activity->image) }}" alt="{{ $activity->name }}" class="activity-image mb-4">
                 
                 <span class="difficulty-badge difficulty-{{ strtolower($activity->difficulty) }}">
                     {{ $activity->difficulty }}

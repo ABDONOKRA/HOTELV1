@@ -23,7 +23,7 @@ Route::get('/create_activity', [AdminController::class, 'create_activity'])->mid
 Route::post('/store_activity', [AdminController::class, 'store_activity'])->middleware(['auth','admin']);
 Route::get('/view_activities', [AdminController::class, 'view_activities'])->middleware(['auth','admin']);
 Route::get('/edit_activity/{id}', [AdminController::class, 'edit_activity'])->middleware(['auth','admin']);
-Route::post('/update_activity/{id}', [AdminController::class, 'update_activity'])->middleware(['auth','admin']);
+Route::post('/update_activity/{id}', [AdminController::class, 'update_activity'])->name('update_activity')->middleware(['auth','admin']);
 Route::get('/delete_activity/{id}', [AdminController::class, 'delete_activity'])->middleware(['auth','admin']);
 
 // Activity and Spa Bookings
