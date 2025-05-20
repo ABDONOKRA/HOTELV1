@@ -287,24 +287,23 @@
                     @if($activity->type == 'activity')
                         <div class="col-lg-4 col-md-6">
                             <div class="activity-card">
-                                <img src="{{asset($activity->image)}}" class="activity-img" alt="{{ $activity->name }}">
+                                <img src="{{ asset($activity->image) }}" class="activity-img" alt="{{ $activity->name }}">
                                 <div class="activity-content">
                                     <span class="difficulty-badge difficulty-{{ strtolower($activity->difficulty) }}">
-                                        {{ $activity->difficulty }}
+                                        {{ ucfirst($activity->difficulty) }}
                                     </span>
                                     <h3 class="activity-title">{{ $activity->name }}</h3>
+                                    <p class="activity-description">{{ $activity->description }}</p>
                                     <div class="activity-details">
-                                        <div class="d-flex align-items-center mb-2">
-                                            <i class="far fa-clock me-2"></i>
-                                            <span>{{ $activity->duration_in_hours }} heures</span>
-                                        </div>
-                                        @if($activity->elevation)
-                                            <div class="d-flex align-items-center mb-2">
-                                                <i class="fas fa-mountain me-2"></i>
-                                                <span>Dénivelé : {{ $activity->elevation }}</span>
-                                            </div>
-                                        @endif
+                                        <i class="far fa-clock me-2"></i>
+                                        <span>{{ $activity->duration_in_hours }} heures</span>
                                     </div>
+                                    @if($activity->elevation)
+                                    <div class="activity-details">
+                                        <i class="fas fa-mountain me-2"></i>
+                                        <span>Dénivelé: {{ $activity->elevation }}</span>
+                                    </div>
+                                    @endif
                                     <div class="activity-price">{{ $activity->price }}€ <span class="fs-6">par personne</span></div>
                                     <a href="{{ route('activity.details', $activity->id) }}" class="btn btn-book-activity w-100">
                                         <i class="fas fa-hiking me-2"></i>Réserver cette activité
@@ -330,7 +329,7 @@
                     @if($activity->type == 'spa')
                         <div class="col-lg-6">
                             <div class="spa-card">
-                                <img src="{{asset($activity->image)}}" class="spa-img" alt="{{ $activity->name }}">
+                                <img src="{{ asset($activity->image) }}" class="spa-img" alt="{{ $activity->name }}">
                                 <div class="spa-content">
                                     <h3 class="spa-title">{{ $activity->name }}</h3>
                                     <p class="spa-description">{{ $activity->description }}</p>

@@ -8,6 +8,8 @@ use App\Models\Booking;
 use App\Models\Contact;
 use App\Models\Gallary;
 use App\Models\Activity;
+use App\Models\ActivityBooking;
+use App\Models\SpaBooking;
 
 
  
@@ -102,7 +104,7 @@ class HomeController extends Controller
         
         public function hotels_services()
         {
-            $activities = Activity::all();
+            $activities = Activity::orderBy('created_at', 'desc')->get();
             return view('home.hotels_services', compact('activities'));
         }
 
@@ -130,15 +132,16 @@ class HomeController extends Controller
 
             $activity = Activity::findOrFail($id);
             
-            $booking = new Booking();
+            $booking = new ActivityBooking();
             $booking->user_id = auth()->id();
             $booking->activity_id = $id;
             $booking->name = $request->name;
             $booking->email = $request->email;
             $booking->phone = $request->phone;
-            $booking->start_date = $request->booking_date;
+            $booking->booking_date = $request->booking_date;
             $booking->booking_time = $request->booking_time;
-            $booking->type = 'activity';
+            $booking->number_of_people = 1; // Default to 1 if not specified
+            $booking->total_price = $activity->price;
             $booking->status = 'pending';
             $booking->save();
 
@@ -157,15 +160,15 @@ class HomeController extends Controller
 
             $activity = Activity::findOrFail($id);
             
-            $booking = new Booking();
+            $booking = new SpaBooking();
             $booking->user_id = auth()->id();
-            $booking->activity_id = $id;
+            $booking->spa_service_id = $id;
             $booking->name = $request->name;
             $booking->email = $request->email;
             $booking->phone = $request->phone;
-            $booking->start_date = $request->booking_date;
+            $booking->booking_date = $request->booking_date;
             $booking->booking_time = $request->booking_time;
-            $booking->type = 'spa';
+            $booking->price = $activity->price;
             $booking->status = 'pending';
             $booking->save();
 

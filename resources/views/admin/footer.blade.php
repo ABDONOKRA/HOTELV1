@@ -1,12 +1,5 @@
- <footer class="footer">
-          <div class="footer__block block no-margin-bottom">
-            <div class="container-fluid text-center">
-                         <p class="no-margin-bottom">2025 Made with : ABDELGHAFOUR.</p>
-            </div>
-          </div>
-        </footer>
-      </div>
-    </div>
+  
+      
     <!-- JavaScript files-->
     <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('admin/vendor/popper.js/umd/popper.min.js') }}"> </script>

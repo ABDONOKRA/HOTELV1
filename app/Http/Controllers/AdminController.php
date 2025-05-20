@@ -24,18 +24,16 @@ class AdminController extends Controller
             
             // Accède à la propriété usertype de l'utilisateur
             if ($user->usertype == 'user') {
-
-
-                
-
-                 $room = Room::all();
-
-                 $gallary = Gallary::all();
-
+                $room = Room::all();
+                $gallary = Gallary::all();
                 return view('home.index',compact('room','gallary'));
             }
             else if ($user->usertype == 'admin') {
-                return view('admin.index');
+                // Room booking stats
+                $reserved = \App\Models\Booking::where('status', 'waiting')->count();
+                $approved = \App\Models\Booking::where('status', 'approve')->count();
+                $rejected = \App\Models\Booking::where('status', 'rejected')->count();
+                return view('admin.index', compact('reserved', 'approved', 'rejected'));
             }
             else {
                 return redirect()->back();
@@ -275,36 +273,77 @@ return view('admin.all_messages',compact('data'));
 
     public function store_activity(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'type' => 'required|in:activity,spa',
-            'description' => 'required',
-            'price' => 'required|numeric|min:0',
-            'duration_in_hours' => 'required|integer|min:1',
-            'difficulty' => 'nullable|in:easy,moderate,hard',
-            'elevation' => 'nullable|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
+        try {
+            $validationRules = [
+                'name' => 'required',
+                'type' => 'required|in:activity,spa',
+                'description' => 'required',
+                'price' => 'required|numeric|min:0',
+                'duration_in_hours' => 'required|integer|min:1',
+                'image' => 'required|mimes:jpeg,png,jpg,gif,webp,bmp|max:5120'  // Increased max size to 5MB and added more formats
+            ];
 
-        $activity = new Activity;
-        $activity->name = $request->name;
-        $activity->type = $request->type;
-        $activity->description = $request->description;
-        $activity->price = $request->price;
-        $activity->duration_in_hours = $request->duration_in_hours;
-        $activity->difficulty = $request->difficulty;
-        $activity->elevation = $request->elevation;
+            // Add difficulty validation only for activities
+            if ($request->type === 'activity') {
+                $validationRules['difficulty'] = 'required|in:easy,moderate,hard';
+            }
 
-        if($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move('activity', $imageName);
-            $activity->image = $imageName;
+            $validated = $request->validate($validationRules);
+
+            $activity = new Activity;
+            $activity->name = $request->name;
+            $activity->type = $request->type;
+            $activity->description = $request->description;
+            $activity->price = $request->price;
+            $activity->duration_in_hours = $request->duration_in_hours;
+            
+            // Only set difficulty if it's an activity
+            if ($request->type === 'activity') {
+                $activity->difficulty = $request->difficulty;
+                $activity->elevation = $request->elevation;
+            } else {
+                // For spa services, set these to null
+                $activity->difficulty = null;
+                $activity->elevation = null;
+            }
+
+            if($request->hasFile('image')) {
+                $image = $request->file('image');
+                
+                // Verify the file is valid
+                if (!$image->isValid()) {
+                    throw new \Exception('Invalid image file');
+                }
+
+                // Get original extension
+                $extension = $image->getClientOriginalExtension();
+                if (!in_array(strtolower($extension), ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp'])) {
+                    throw new \Exception('Invalid image format. Allowed formats: jpg, jpeg, png, gif, webp, bmp');
+                }
+
+                $imageName = time() . '_' . uniqid() . '.' . $extension;
+                
+                // Create directory if it doesn't exist
+                $path = public_path('activity');
+                if (!file_exists($path)) {
+                    mkdir($path, 0777, true);
+                }
+
+                // Move the file
+                $image->move($path, $imageName);
+                $activity->image = 'activity/' . $imageName;
+            }
+
+            $activity->save();
+
+            return redirect()->back()->with('message', $request->type === 'activity' ? 'Activity added successfully' : 'Spa service added successfully');
+            
+        } catch (\Exception $e) {
+            \Log::error('Activity creation error: ' . $e->getMessage());
+            return redirect()->back()
+                ->with('error', 'Error: ' . $e->getMessage())
+                ->withInput();
         }
-
-        $activity->save();
-
-        return redirect()->back()->with('message', 'Activity/Service added successfully');
     }
 
     public function view_activities()

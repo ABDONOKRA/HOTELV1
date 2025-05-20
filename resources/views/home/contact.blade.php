@@ -29,7 +29,7 @@
                            <input class="contactus" placeholder="Email" type="email" name="email" requerid> 
                         </div>
                         <div class="col-md-12">
-                           <input class="contactus" placeholder="Phone Number" type="number" name="phone" requerid>                          
+                           <input class="contactus" placeholder="Phone Number" type="tel" name="phone" required pattern="[0-9+\-\s]+">                          
                         </div>
                         <div class="col-md-12">
                            <textarea class="textarea" placeholder="Message" type="type" name="message">Message</textarea>

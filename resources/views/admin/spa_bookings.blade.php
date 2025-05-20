@@ -22,6 +22,10 @@
         .th_deg {
             padding: 10px;
         }
+        /* Added for better visibility on dark backgrounds */
+        .table, .table th, .table td {
+            color: #f8f9fa !important;
+        }
     </style>
 </head>
 <body>

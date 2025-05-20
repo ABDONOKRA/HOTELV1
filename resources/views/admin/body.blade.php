@@ -114,19 +114,21 @@
           <div class="container-fluid">
             <div class="row">
                 <!-- Bookings Overview -->
-                <div class="col-xl-8 mb-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title">Bookings Overview</h5>
+                <div class="col-12 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">Bookings Overview</h5>
                             <div class="card-actions">
                                 <button class="btn btn-sm btn-light">Export</button>
                                 <button class="btn btn-sm btn-light">Filter</button>
-                  </div>
-                </div>
+                            </div>
+                        </div>
                         <div class="card-body">
-                            <canvas id="bookingsOverviewChart" height="300"></canvas>
-              </div>
-                  </div>
+                            <div style="height: 300px;">
+                                <canvas id="bookingsOverviewChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Recent Activities -->
@@ -140,13 +142,13 @@
                                 <div class="activity-item">
                                     <div class="activity-icon bg-primary-light">
                                         <i class="fa fa-key text-primary"></i>
-              </div>
+                                    </div>
                                     <div class="activity-content">
                                         <h6>New Check-in</h6>
                                         <p>Room 304 - John Smith</p>
                                         <small class="text-muted">5 mins ago</small>
-                  </div>
-                </div>
+                                    </div>
+                                </div>
                                 <div class="activity-item">
                                     <div class="activity-icon bg-success-light">
                                         <i class="fa fa-hiking text-success"></i>
@@ -155,22 +157,29 @@
                                         <h6>Activity Booked</h6>
                                         <p>Mountain Hiking - 3 persons</p>
                                         <small class="text-muted">15 mins ago</small>
-              </div>
-            </div>
+                                    </div>
+                                </div>
                                 <div class="activity-item">
                                     <div class="activity-icon bg-info-light">
                                         <i class="fa fa-spa text-info"></i>
-                </div>
+                                    </div>
                                     <div class="activity-content">
                                         <h6>Spa Appointment</h6>
                                         <p>Massage Session - Sarah Johnson</p>
                                         <small class="text-muted">1 hour ago</small>
-                  </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-                  </div>
+                <!-- Room Booking Status Chart (moved here) -->
+                <div class="col-xl-8 mb-4">
+                    <div class="card" style="background:#23272b; padding:20px; margin-bottom:20px;">
+                        <h4 style="color:#fff;">Room Booking Status</h4>
+                        <canvas id="bookingStatusChart" width="400" height="200"></canvas>
+                    </div>
                 </div>
-              </div>
             </div>
 
             <div class="row">
@@ -184,7 +193,7 @@
                             <div class="room-availability">
                                 <div class="availability-item">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span>Standard Rooms</span>
+                                        <span class="text-white">Standard Rooms</span>
                                         <span class="badge bg-success">12 Available</span>
                 </div>
                                     <div class="progress">
@@ -193,7 +202,7 @@
                 </div>
                                 <div class="availability-item">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span>Deluxe Rooms</span>
+                                        <span class="text-white">Deluxe Rooms</span>
                                         <span class="badge bg-warning">5 Available</span>
               </div>
                                     <div class="progress">
@@ -202,7 +211,7 @@
           </div>
                                 <div class="availability-item">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span>Suites</span>
+                                        <span class="text-white">Suites</span>
                                         <span class="badge bg-danger">2 Available</span>
                     </div>
                                     <div class="progress">
@@ -286,6 +295,43 @@
                     </div>
 
 <style>
+/* Body styles */
+body {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: #2d3035;
+}
+
+/* Page Content Container */
+.page-content {
+    padding: 20px;
+    background: #2d3035;
+    min-height: 100vh;
+    width: calc(100% - 250px); /* Adjust based on sidebar width */
+    margin-left: 250px; /* Should match your sidebar width */
+    overflow-x: hidden;
+}
+
+.container-fluid {
+    max-width: 1800px; /* Maximum width of the content */
+    margin: 0 auto;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .page-content {
+        width: 100%;
+        margin-left: 0;
+        padding: 15px;
+    }
+}
+
 /* Page Header */
 .page-header {
     padding: 1.25rem 1.5rem;
@@ -296,19 +342,16 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.page-content {
-    padding: 0;
-    background: #2d3035;
-    min-height: 100vh;
-    width: 100%;
-    overflow-x: hidden;
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
 }
 
-.container-fluid {
-    padding-right: 1.5rem;
-    padding-left: 1.5rem;
-    max-width: 100%;
-    width: 100%;
+.text-muted {
+    color: #8a8d93 !important;
+    font-size: 0.875rem;
 }
 
 /* Stats Cards */
@@ -332,19 +375,6 @@
     width: 100%;
 }
 
-.page-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #fff;
-    margin: 0;
-}
-
-.text-muted {
-    color: #8a8d93 !important;
-    font-size: 0.875rem;
-}
-
-/* Stats Cards */
 .stats-card {
     background: #34373d;
     border-radius: 0.5rem;
@@ -564,23 +594,9 @@
     border-color: #007bff;
     color: #fff;
 }
-
-/* Responsive */
-@media (max-width: 768px) {
-    .page-header {
-        padding: 1rem 0;
-    }
-
-    .stats-card {
-        margin-bottom: 1rem;
-    }
-
-    .card {
-        margin-bottom: 1rem;
-    }
-}
 </style>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 // Initialize charts when the document is ready
 document.addEventListener('DOMContentLoaded', function() {
@@ -632,16 +648,68 @@ document.addEventListener('DOMContentLoaded', function() {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        padding: 20,
+                        color: '#8a8d93'
+                    }
+                }
+            },
             scales: {
                 x: {
                     grid: {
                         display: false
+                    },
+                    ticks: {
+                        color: '#8a8d93'
                     }
                 },
                 y: {
                     beginAtZero: true,
                     grid: {
                         color: '#444'
+                    },
+                    ticks: {
+                        color: '#8a8d93',
+                        callback: function(value) {
+                            return value + ' bookings';
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    var ctx = document.getElementById('bookingStatusChart').getContext('2d');
+    var bookingStatusChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Reserved', 'Approved', 'Rejected'],
+            datasets: [{
+                label: 'Number of Bookings',
+                data: [{{ $reserved ?? 0 }}, {{ $approved ?? 0 }}, {{ $rejected ?? 0 }}],
+                backgroundColor: [
+                    'rgba(255, 193, 7, 0.7)',   // Reserved (yellow)
+                    'rgba(40, 167, 69, 0.7)',   // Approved (green)
+                    'rgba(220, 53, 69, 0.7)'    // Rejected (red)
+                ],
+                borderColor: [
+                    'rgba(255, 193, 7, 1)',
+                    'rgba(40, 167, 69, 1)',
+                    'rgba(220, 53, 69, 1)'
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        color: '#fff',
+                        font: { size: 16 }
                     }
                 }
             }

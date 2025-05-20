@@ -22,6 +22,10 @@
         .th_deg {
             padding: 10px;
         }
+        /* Added for better visibility on dark backgrounds */
+        .table, .table th, .table td {
+            color: #f8f9fa !important;
+        }
     </style>
 </head>
 <body>
@@ -31,7 +35,7 @@
         @include('admin.sidebar')
         
         <div class="page-content">
-            <h2 class="h2_font">Activity Bookings</h2>
+            <h2 class="h2_font" style="color: white;">Activity Bookings</h2>
             
             @if(session()->has('message'))
                 <div class="alert alert-success">

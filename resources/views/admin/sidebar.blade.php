@@ -23,7 +23,7 @@
 
                         <li class="sidebar-item {{ Request::is('/') ? 'active' : '' }}">
                               <a href="{{route('home.index')}}" class="sidebar-link">
-                                    <i class="fa fa-dashboard"></i>
+                                    <i class="fa fa-home"></i>
                                     <span>Home</span>
                               </a>
                         </li>

@@ -121,58 +121,80 @@
                     </div>
                 @endif
                 
+                @if(session()->has('error'))
+                    <div class="alert alert-danger">
+                        {{ session()->get('error') }}
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                
                 <form action="{{url('store_activity')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     
                     <div class="form-group">
                         <label>Name</label>
-                        <input class="input_color" type="text" name="name" placeholder="Enter activity name" required>
+                        <input class="input_color" type="text" name="name" placeholder="Enter activity/spa name" required value="{{ old('name') }}">
                     </div>
                     
                     <div class="form-group">
                         <label>Type</label>
-                        <select class="input_color" name="type" required>
+                        <select class="input_color" name="type" id="type" required>
                             <option value="">Select type</option>
-                            <option value="activity">Activity</option>
-                            <option value="spa">Spa Service</option>
+                            <option value="activity" {{ old('type') == 'activity' ? 'selected' : '' }}>Activity</option>
+                            <option value="spa" {{ old('type') == 'spa' ? 'selected' : '' }}>Spa Service</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea class="input_color" name="description" placeholder="Enter description" required></textarea>
+                        <textarea class="input_color" name="description" placeholder="Enter description" required>{{ old('description') }}</textarea>
                     </div>
                     
                     <div class="form-group">
                         <label>Price (€)</label>
-                        <input class="input_color" type="number" name="price" step="0.01" placeholder="Enter price" required>
+                        <input class="input_color" type="number" name="price" step="0.01" placeholder="Enter price" required value="{{ old('price') }}">
                     </div>
                     
                     <div class="form-group">
                         <label>Duration (hours)</label>
-                        <input class="input_color" type="number" name="duration_in_hours" placeholder="Enter duration" required>
+                        <input class="input_color" type="number" name="duration_in_hours" placeholder="Enter duration" required value="{{ old('duration_in_hours') }}">
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group activity-fields" style="display: none;">
                         <label>Difficulty</label>
-                        <select class="input_color" name="difficulty">
-                            <option value="">None (Spa)</option>
-                            <option value="easy">Easy</option>
-                            <option value="moderate">Moderate</option>
-                            <option value="hard">Hard</option>
+                        <select class="input_color" name="difficulty" id="difficulty">
+                            <option value="">Select difficulty</option>
+                            <option value="easy" {{ old('difficulty') == 'easy' ? 'selected' : '' }}>Easy</option>
+                            <option value="moderate" {{ old('difficulty') == 'moderate' ? 'selected' : '' }}>Moderate</option>
+                            <option value="hard" {{ old('difficulty') == 'hard' ? 'selected' : '' }}>Hard</option>
                         </select>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group activity-fields" style="display: none;">
                         <label>Elevation (optional)</label>
-                        <input class="input_color" type="text" name="elevation" placeholder="Enter elevation">
+                        <input class="input_color" type="text" name="elevation" placeholder="Enter elevation" value="{{ old('elevation') }}">
                     </div>
                     
                     <div class="form-group">
                         <label>Image</label>
                         <div class="file-input-wrapper">
                             <div class="file-input-button">Choose Image</div>
-                            <input type="file" name="image" required>
+                            <input type="file" name="image" accept="image/jpeg,image/png,image/gif,image/webp,image/bmp" required>
+                            <small class="text-muted d-block mt-2">
+                                Supported formats: JPG, JPEG, PNG, GIF, WEBP, BMP (Max size: 5MB)
+                            </small>
+                            <div id="imagePreview" class="mt-3" style="display: none;">
+                                <img src="#" alt="Preview" style="max-width: 200px; max-height: 200px; object-fit: contain;">
+                            </div>
                         </div>
                     </div>
                     
@@ -185,5 +207,67 @@
     </div>
     
     @include('admin.footer')
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const typeSelect = document.querySelector('#type');
+            const activityFields = document.querySelectorAll('.activity-fields');
+            const difficultySelect = document.querySelector('#difficulty');
+            const imageInput = document.querySelector('input[type="file"]');
+            const imagePreview = document.querySelector('#imagePreview');
+            const previewImg = imagePreview.querySelector('img');
+            
+            // Handle type selection
+            function updateFormFields() {
+                const isActivity = typeSelect.value === 'activity';
+                activityFields.forEach(field => {
+                    field.style.display = isActivity ? 'block' : 'none';
+                });
+                
+                if (isActivity) {
+                    difficultySelect.setAttribute('required', 'required');
+                } else {
+                    difficultySelect.removeAttribute('required');
+                }
+            }
+            
+            // Handle image preview
+            imageInput.addEventListener('change', function(e) {
+                if (this.files && this.files[0]) {
+                    const file = this.files[0];
+                    
+                    // Validate file type
+                    const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/bmp'];
+                    if (!validTypes.includes(file.type)) {
+                        alert('Please select a valid image file (JPG, JPEG, PNG, GIF, WEBP, BMP)');
+                        this.value = '';
+                        imagePreview.style.display = 'none';
+                        return;
+                    }
+                    
+                    // Validate file size (5MB)
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert('File size must be less than 5MB');
+                        this.value = '';
+                        imagePreview.style.display = 'none';
+                        return;
+                    }
+                    
+                    // Show preview
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewImg.src = e.target.result;
+                        imagePreview.style.display = 'block';
+                    }
+                    reader.readAsDataURL(file);
+                } else {
+                    imagePreview.style.display = 'none';
+                }
+            });
+            
+            typeSelect.addEventListener('change', updateFormFields);
+            updateFormFields(); // Run on page load
+        });
+    </script>
 </body>
 </html> 

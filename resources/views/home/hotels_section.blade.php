@@ -9,7 +9,7 @@
         <!-- Hotel 1 -->
         <div class="col-md-4">
             <div class="card h-100 shadow-sm hover-effect">
-                <img src="images/hotel1.jpg" class="card-img-top" alt="Luxury Hotel" style="height: 250px; object-fit: cover;">
+                <img src="images/hotel12.jpg" class="card-img-top" alt="Luxury Hotel" style="height: 250px; object-fit: cover;">
                 <div class="card-body">
                     <h5 class="card-title">Grand Plaza Hotel</h5>
                     <div class="mb-2">
@@ -33,7 +33,7 @@
         <!-- Hotel 2 -->
         <div class="col-md-4">
             <div class="card h-100 shadow-sm hover-effect">
-                <img src="images/hotel2.jpg" class="card-img-top" alt="Beach Resort" style="height: 250px; object-fit: cover;">
+                <img src="images/hotel12.jpg" class="card-img-top" alt="Beach Resort" style="height: 250px; object-fit: cover;">
                 <div class="card-body">
                     <h5 class="card-title">Seaside Resort & Spa</h5>
                     <div class="mb-2">
@@ -57,7 +57,7 @@
         <!-- Hotel 3 -->
         <div class="col-md-4">
             <div class="card h-100 shadow-sm hover-effect">
-                <img src="images/hotel3.jpg" class="card-img-top" alt="Mountain Resort" style="height: 250px; object-fit: cover;">
+                <img src="images/hotel12.jpg" class="card-img-top" alt="Mountain Resort" style="height: 250px; object-fit: cover;">
                 <div class="card-body">
                     <h5 class="card-title">Mountain View Lodge</h5>
                     <div class="mb-2">

@@ -27,12 +27,12 @@ Route::post('/update_activity/{id}', [AdminController::class, 'update_activity']
 Route::get('/delete_activity/{id}', [AdminController::class, 'delete_activity'])->middleware(['auth','admin']);
 
 // Activity and Spa Bookings
-Route::get('/activity_bookings', [AdminController::class, 'view_activity_bookings'])->middleware(['auth','admin']);
-Route::get('/spa_bookings', [AdminController::class, 'view_spa_bookings'])->middleware(['auth','admin']);
-Route::get('/confirm_activity_booking/{id}', [AdminController::class, 'confirm_activity_booking'])->middleware(['auth','admin']);
-Route::get('/cancel_activity_booking/{id}', [AdminController::class, 'cancel_activity_booking'])->middleware(['auth','admin']);
-Route::get('/confirm_spa_booking/{id}', [AdminController::class, 'confirm_spa_booking'])->middleware(['auth','admin']);
-Route::get('/cancel_spa_booking/{id}', [AdminController::class, 'cancel_spa_booking'])->middleware(['auth','admin']);
+Route::get('/activity_bookings', [AdminController::class, 'view_activity_bookings'])->name('admin.activity_bookings')->middleware(['auth','admin']);
+Route::get('/spa_bookings', [AdminController::class, 'view_spa_bookings'])->name('admin.spa_bookings')->middleware(['auth','admin']);
+Route::get('/confirm_activity_booking/{id}', [AdminController::class, 'confirm_activity_booking'])->name('admin.activity_booking.confirm')->middleware(['auth','admin']);
+Route::get('/cancel_activity_booking/{id}', [AdminController::class, 'cancel_activity_booking'])->name('admin.activity_booking.cancel')->middleware(['auth','admin']);
+Route::get('/confirm_spa_booking/{id}', [AdminController::class, 'confirm_spa_booking'])->name('admin.spa_booking.confirm')->middleware(['auth','admin']);
+Route::get('/cancel_spa_booking/{id}', [AdminController::class, 'cancel_spa_booking'])->name('admin.spa_booking.cancel')->middleware(['auth','admin']);
 
 Route::get('/room_details/{id}' ,[HomeController::class,'room_details']);
 Route::post('/add_booking/{id}' ,[HomeController::class,'add_booking']);
