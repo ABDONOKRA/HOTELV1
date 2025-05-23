@@ -4,7 +4,7 @@
          <div class="col-md-12">
             <div class="titlepage">
                <h2>Our Room</h2>
-               <p class="margin_0">Détendez-vous dans un havre de paix conçu pour votre confort. Notre chambre allie élégance moderne et chaleur authentique pour vous offrir une expérience inoubliable</p>
+               <p class="margin_0" style="font-size: 1.35rem; font-family: 'Georgia', 'Times New Roman', Times, serif; line-height: 2; text-align: center;">Détendez-vous dans un havre de paix conçu pour votre confort. Notre chambre allie élégance moderne et chaleur authentique pour vous offrir une expérience inoubliable</p>
             </div>
          </div>
       </div>

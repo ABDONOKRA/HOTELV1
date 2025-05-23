@@ -58,3 +58,5 @@ Route::get('/activity/{id}', [HomeController::class, 'activity_details'])->name(
 Route::get('/spa/{id}', [HomeController::class, 'spa_details'])->name('spa.details');
 Route::post('/activity/book/{id}', [HomeController::class, 'book_activity'])->name('activity.book');
 Route::post('/spa/book/{id}', [HomeController::class, 'book_spa'])->name('spa.book');
+
+Route::post('/cancel-reservation/{id}', [HomeController::class, 'cancelReservation'])->name('cancel.reservation');

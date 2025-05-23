@@ -2,7 +2,7 @@
 <div class="container py-5">
     <div class="text-center mb-5">
         <h2 class="title">Our Featured Hotels</h2>
-        <p class="text-muted">Discover our collection of luxurious hotels and resorts</p>
+        <p class="text-muted" style="font-size: 1.35rem; font-family: 'Georgia', 'Times New Roman', Times, serif; line-height: 2; text-align: center;">Découvrez notre sélection exclusive d'hôtels de luxe, soigneusement choisis pour vous offrir un confort exceptionnel, des services haut de gamme, et une expérience inoubliable que vous soyez en bord de mer, en plein centre-ville ou au cœur des montagnes.</p>
     </div>
 
     <div class="row g-4">
@@ -11,7 +11,7 @@
             <div class="card h-100 shadow-sm hover-effect">
                 <img src="images/hotel12.jpg" class="card-img-top" alt="Luxury Hotel" style="height: 250px; object-fit: cover;">
                 <div class="card-body">
-                    <h5 class="card-title">Grand Plaza Hotel</h5>
+                    <h5 class="card-title" style="font-size: 2rem; font-weight: 700;">ALMAMOUNIA HOTEL</h5>
                     <div class="mb-2">
                         <i class="fa fa-star text-warning"></i>
                         <i class="fa fa-star text-warning"></i>
@@ -33,9 +33,9 @@
         <!-- Hotel 2 -->
         <div class="col-md-4">
             <div class="card h-100 shadow-sm hover-effect">
-                <img src="images/hotel12.jpg" class="card-img-top" alt="Beach Resort" style="height: 250px; object-fit: cover;">
+                <img src="images/hotel11.jpg" class="card-img-top" alt="Beach Resort" style="height: 250px; object-fit: cover;">
                 <div class="card-body">
-                    <h5 class="card-title">Seaside Resort & Spa</h5>
+                    <h5 class="card-title" style="font-size: 2rem; font-weight: 700;">ESSAIDY HOTEL</h5>
                     <div class="mb-2">
                         <i class="fa fa-star text-warning"></i>
                         <i class="fa fa-star text-warning"></i>
@@ -57,9 +57,9 @@
         <!-- Hotel 3 -->
         <div class="col-md-4">
             <div class="card h-100 shadow-sm hover-effect">
-                <img src="images/hotel12.jpg" class="card-img-top" alt="Mountain Resort" style="height: 250px; object-fit: cover;">
+                <img src="images/hotel13.jpg" class="card-img-top" alt="Mountain Resort" style="height: 250px; object-fit: cover;">
                 <div class="card-body">
-                    <h5 class="card-title">Mountain View Lodge</h5>
+                    <h5 class="card-title" style="font-size: 2rem; font-weight: 700;">ARIH HOTEL</h5>
                     <div class="mb-2">
                         <i class="fa fa-star text-warning"></i>
                         <i class="fa fa-star text-warning"></i>

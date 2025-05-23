@@ -196,11 +196,10 @@
     border: 2px solid #2d3035;
 }
 
-.sidebar-heading {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #8a8d93;
+.sidebar-heading, .sidebar-heading span, .sidebar-menu .sidebar-heading, .sidebar-menu .sidebar-heading span {
+    color: #f1f1f1 !important;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 .sidebar-item {

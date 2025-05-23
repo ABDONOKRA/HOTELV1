@@ -184,7 +184,8 @@ class HomeController extends Controller
 
             // Get user's room bookings
             $bookings = Booking::where('user_id', auth()->id())
-                ->with('room') // Eager load room relationship
+                ->where('status', '!=', 'cancelled')
+                ->with('room')
                 ->get()
                 ->map(function ($booking) {
                     return [
@@ -202,11 +203,86 @@ class HomeController extends Controller
                     ];
                 });
 
+            // Get user's activity bookings
+            $activityBookings = ActivityBooking::where('user_id', auth()->id())
+                ->where('status', '!=', 'cancelled')
+                ->with('activity')
+                ->get()
+                ->map(function ($booking) {
+                    return [
+                        'id' => $booking->id,
+                        'type' => 'activity',
+                        'name' => $booking->activity->name ?? 'Activité non disponible',
+                        'image' => $booking->activity && $booking->activity->image ? 'activities/' . $booking->activity->image : null,
+                        'booking_date' => $booking->booking_date,
+                        'booking_time' => $booking->booking_time,
+                        'status' => $booking->status ?? 'pending',
+                        'total_price' => $booking->total_price ?? 0,
+                        'number_of_people' => $booking->number_of_people ?? 1,
+                        'special_requests' => $booking->special_requests,
+                        'details_url' => $booking->activity ? url('/activity/' . $booking->activity->id) : '#',
+                    ];
+                });
+
+            // Get user's spa bookings
+            $spaBookings = SpaBooking::where('user_id', auth()->id())
+                ->where('status', '!=', 'cancelled')
+                ->with('spaService')
+                ->get()
+                ->map(function ($booking) {
+                    return [
+                        'id' => $booking->id,
+                        'type' => 'spa',
+                        'name' => $booking->spaService->name ?? 'Spa non disponible',
+                        'image' => $booking->spaService && $booking->spaService->image ? 'activities/' . $booking->spaService->image : null,
+                        'booking_date' => $booking->booking_date,
+                        'booking_time' => $booking->booking_time,
+                        'status' => $booking->status ?? 'pending',
+                        'total_price' => $booking->price ?? 0,
+                        'number_of_people' => 1,
+                        'special_requests' => $booking->special_requests,
+                        'details_url' => $booking->spaService ? url('/spa/' . $booking->spaService->id) : '#',
+                    ];
+                });
+
+            // Merge all reservations and sort by booking_date descending
+            $reservations = $bookings
+                ->concat($activityBookings)
+                ->concat($spaBookings)
+                ->sortByDesc('booking_date')
+                ->values();
+
             return view('home.my_reservations', [
-                'reservations' => $bookings
+                'reservations' => $reservations
             ]);
         }
 
-
+        public function cancelReservation(Request $request, $id)
+        {
+            $type = $request->input('type');
+            if ($type === 'room') {
+                $booking = Booking::where('id', $id)->where('user_id', auth()->id())->first();
+                if ($booking) {
+                    $booking->status = 'cancelled';
+                    $booking->save();
+                    return response()->json(['success' => true]);
+                }
+            } elseif ($type === 'activity') {
+                $booking = ActivityBooking::where('id', $id)->where('user_id', auth()->id())->first();
+                if ($booking) {
+                    $booking->status = 'cancelled';
+                    $booking->save();
+                    return response()->json(['success' => true]);
+                }
+            } elseif ($type === 'spa') {
+                $booking = SpaBooking::where('id', $id)->where('user_id', auth()->id())->first();
+                if ($booking) {
+                    $booking->status = 'cancelled';
+                    $booking->save();
+                    return response()->json(['success' => true]);
+                }
+            }
+            return response()->json(['success' => false, 'message' => 'Reservation not found.']);
+        }
 
 }

@@ -10,10 +10,7 @@
 </div>
                   @if(session()->has('message'))
                   
-                  <div class="alert alert-success">
-
-                  <button type="button" class="close" data-bs-dismiss='alert'>X</button>{{session()->get('message')}}
-                  </div>  
+                  <div class="alert alert-success">{{session()->get('message')}}</div>      
             @endif                
                </div>
             </div>

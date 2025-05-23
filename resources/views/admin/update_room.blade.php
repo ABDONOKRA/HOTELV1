@@ -3,161 +3,118 @@
   <head> 
   <base href="/public">
   @include('admin.css')
-
-        <style type="text/css">
-
-            label
-
-            {
-            display:inline-block;
-            width:200px;
-            }
-
-                .div_deg
-                {
-                    padding-top: 30px;
-                } 
-                .div_center
-                {
-                    text-align: center;
-                    padding-top: 40px;
-                }
-
-</style>            
-
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background: #23272b; }
+    .card-dark {
+      background: #181a1b;
+      color: #f1f1f1;
+      border: none;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    }
+    .card-dark .form-label {
+      color: #e0e0e0;
+      font-size: 1.1rem;
+    }
+    .card-dark .form-control, .card-dark textarea, .card-dark select {
+      background: #23272b;
+      color: #f1f1f1;
+      border: 1px solid #333;
+      border-radius: 0.5rem;
+      font-size: 1.1rem;
+    }
+    .card-dark .form-control:focus, .card-dark textarea:focus, .card-dark select:focus {
+      background: #23272b;
+      color: #fff;
+      border-color: #007bff;
+      box-shadow: 0 0 0 0.2rem rgba(0,123,255,.15);
+    }
+    .card-dark .btn-primary {
+      background: #007bff;
+      border: none;
+      font-size: 1.15rem;
+      border-radius: 0.5rem;
+      padding: 10px 0;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: background 0.2s;
+    }
+    .card-dark .btn-primary:hover {
+      background: #0056b3;
+    }
+    .form-title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #f1f1f1;
+    }
+    .current-image {
+      display: block;
+      margin: 0 auto 1rem auto;
+      border-radius: 0.5rem;
+      max-width: 120px;
+      background: #fff;
+      padding: 0.5rem;
+    }
+  </style>
   </head>
   <body>
-   
-            @include('admin.header')
-
-
-        @include('admin.sidebar')
-
-
-   
-      <!-- Sidebar Navigation end-->
-    
-
-      <div class="page-content">
-        <div class="page-header">
-          <div class="container-fluid">
-         <div class="div_center ">
-
-            <h1 style="font-size :30px ; font-weight :bold"> Update Room</h1>
-            <div class:"div_center">
-
-
-             <form action="{{url('edit_room',$data->id)}}" method="post" enctype="multipart/form-data"> 
-
-        @csrf
-
-                <div class="div_deg " >
-                <label>Romm Title</label>
-                <input type="text" name ="title" value="{{$data->room_title}}"> 
-                </div>
-
-                 <div class="div_deg "> 
-                <label>Description </label>
-                    <textarea name="description"> {{$data->description}}
-                    </textarea>
-                </div>
-
-                 <div class="div_deg ">
-                <label>Price</label>
-                <input type="number" name ="price" value="{{$data->price}}"> 
-               
-                </div>
-
-                 <div class="div_deg ">
-                <label>Romm Type</label>
-                <select name="type"  > 
-
-                    <option selected value="{{$data->room_type}}">{{$data->room_type}} </option>
-
-                <option  value="regular" > Regular </option>
-                <option value="premium" > Premium </option>
-                <option value="deluxe" > Deluxe </option>
+    @include('admin.header')
+    @include('admin.sidebar')
+    <div class="container py-5" style="min-height: 80vh;">
+      <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
+          <div class="card card-dark p-4">
+            <div class="form-title">Update Room</div>
+            <form action="{{url('edit_room',$data->id)}}" method="post" enctype="multipart/form-data">
+              @csrf
+              <div class="mb-3">
+                <label class="form-label">Room Title</label>
+                <input type="text" class="form-control" name="title" value="{{$data->room_title}}" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" name="description" rows="3" required>{{$data->description}}</textarea>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Price</label>
+                <input type="number" class="form-control" name="price" value="{{$data->price}}" min="0" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Room Type</label>
+                <select class="form-select" name="type" required>
+                  <option value="{{$data->room_type}}" selected>{{$data->room_type}}</option>
+                  <option value="regular">Regular</option>
+                  <option value="premium">Premium</option>
+                  <option value="deluxe">Deluxe</option>
                 </select>
-                </div>
-
-                   <div class="div_deg ">
-                <label> Free wifi </label>
-                <select name="wifi"  > 
-                <option selected value="{{$data->wifi}}">{{$data->wifi}} </option>
-
-                <option selected value="yes" > Yes </option>
-                <option value="no" > no </option>
-              
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Free Wifi</label>
+                <select class="form-select" name="wifi" required>
+                  <option value="{{$data->wifi}}" selected>{{$data->wifi}}</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
                 </select>
-                </div class="div_deg">
-
-              
-
-
-
-
-                     <div class="div_deg ">
-
-                    <label>Current Image</label>
-                    <img  style="margin:auto" width="100" src="/room/{{$data->image}}">
-
-                     
-
-                    </div>
-
-
-
-
-
-
-                <div class="div_deg ">
-
-                    <label>Upload Image</label>
-
-                    <input type="file" name="image">
-
-                    </div>
-
-                    <div class="div_deg ">
-
-                    <input  class="btn btn-success" type="submit" value="Update Room">
-
-                    </div>
-
-
-
-
-
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Current Image</label>
+                <img class="current-image" src="/room/{{$data->image}}" alt="Current Room Image">
+              </div>
+              <div class="mb-4">
+                <label class="form-label">Upload Image</label>
+                <input type="file" class="form-control" name="image">
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Update Room</button>
+              </div>
             </form>
-
-
-
-
-
-
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-            </div>
-            </div>
-
-       
-
-@include('admin.footer')
-
-
+          </div>
+        </div>
+      </div>
+    </div>
+    @include('admin.footer')
   </body>
 </html>
